@@ -1,0 +1,29 @@
+<header class="site-header" role="banner">
+	<div class="container">
+		<div class="brand">
+			<a href="#" class="logo">Doctor Portfolio</a>
+		</div>
+
+		<button class="hamburger" aria-label="Toggle menu" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
+			<span class="bar"></span>
+			<span class="bar"></span>
+			<span class="bar"></span>
+		</button>
+
+		<nav class="main-nav" [class.open]="isMenuOpen" role="navigation">
+			<ul>
+				<li><a href="#about" (click)="closeMenu()">About</a></li>
+				<li><a href="#gallery" (click)="closeMenu()">Gallery</a></li>
+				<li class="has-dropdown" [class.open]="treatmentsOpen">
+					<a href="#" (click)="toggleTreatments($event)">Treatments</a>
+					<ul class="dropdown">
+						<li><a href="#treatment1" (click)="closeMenu()">Treatment 1</a></li>
+						<li><a href="#treatment2" (click)="closeMenu()">Treatment 2</a></li>
+						<li><a href="#treatment3" (click)="closeMenu()">Treatment 3</a></li>
+					</ul>
+				</li>
+				<li><a href="#contact" (click)="closeMenu()">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>

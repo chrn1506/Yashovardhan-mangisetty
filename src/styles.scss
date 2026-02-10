@@ -1,1 +1,148 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.scss */
+html { scroll-behavior: smooth; }
+
+:root {
+  --spacing-sm: 16px;
+  --spacing-md: 32px;
+  --spacing-lg: 48px;
+  --text-color: #111;
+  --bg-light: #f9f9f9;
+  --border-light: rgba(0, 0, 0, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.section {
+  // padding: 60px var(--spacing-sm);
+  min-height: 60vh;
+  scroll-margin-top: 80px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section:nth-child(even) {
+  background: var(--bg-light);
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  // margin-bottom: 1.5rem;
+  text-align: left;
+  // text-align: center;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.thumb {
+  background: white;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.thumb:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Main & Footer */
+main {
+  flex: 1;
+}
+
+/* Tablet Styles */
+@media (max-width: 768px) {
+  :root {
+    --spacing-sm: 12px;
+    --spacing-md: 24px;
+  }
+
+  .section {
+    padding: 40px var(--spacing-sm);
+    min-height: 50vh;
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .thumb {
+    height: 150px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+  :root {
+    --spacing-sm: 10px;
+  }
+
+  .section {
+    padding: 30px var(--spacing-sm);
+    min-height: auto;
+  }
+
+  .section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .section p {
+    font-size: 0.9rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .thumb {
+    height: 120px;
+    font-size: 0.85rem;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+}

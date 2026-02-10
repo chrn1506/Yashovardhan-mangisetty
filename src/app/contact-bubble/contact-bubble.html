@@ -1,0 +1,19 @@
+<div class="contact-bubble" [class.open]="isOpen">
+  <button class="bubble-btn" aria-label="Contact" (click)="toggle()">
+<!-- <i class="fa fa-address-card-o" aria-hidden="true"></i> -->I
+  </button>
+
+  @if (isOpen) {
+    <div class="panel">
+      <div class="panel-inner">
+        <h4>Contact</h4>
+        <p class="email">{{ email }}</p>
+        <div class="actions">
+          <a class="btn" [href]="'mailto:' + email">Email</a>
+          <button class="btn secondary" (click)="copyEmail()">Copy</button>
+        </div>
+        <button class="close" aria-label="Close" (click)="toggle()">×</button>
+      </div>
+    </div>
+  }
+</div>

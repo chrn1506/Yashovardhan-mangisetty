@@ -1,0 +1,438 @@
+/* home.scss - Component-specific responsive styles */
+
+:host {
+  display: block;
+  // background: #e8f4f8;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-bottom: 10px;
+  }
+}
+
+/* About Section */
+.about-card {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  align-items: start;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.about-info h3 {
+  font-size: 1.8rem;
+  margin: 0 0 8px 0;
+  color: #111;
+}
+
+.about-info .title {
+  font-size: 1.1rem;
+  color: #007acc;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.about-info .registration,
+.about-info .languages {
+  font-size: 0.95rem;
+  margin: 8px 0;
+  color: #333;
+}
+
+.about-info p {
+  text-align: left;
+  line-height: 1.8;
+  margin: 12px 0;
+  color: #555;
+}
+
+.about-info .intro {
+  margin-top: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.qualifications,
+.specialties {
+  margin-top: 20px;
+}
+
+.qualifications h4,
+.specialties h4 {
+  font-size: 1rem;
+  margin: 0 0 12px 0;
+  color: #111;
+}
+
+.qualifications ul,
+.specialties ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.qualifications li,
+.specialties li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  color: #555;
+}
+
+.qualifications li:before,
+.specialties li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #007acc;
+  font-weight: bold;
+}
+
+.passport-photo {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  aspect-ratio: 3/4;
+}
+
+/* Contact Section */
+.contact .intro {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #111;
+}
+
+.info-item a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.info-item a:hover {
+  text-decoration: underline;
+}
+
+.info-item p {
+  margin: 0;
+  text-align: left;
+  color: #666;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #111;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1);
+}
+
+.btn-submit {
+  padding: 12px 24px;
+  background: #007acc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #005a9c;
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  .about-card {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 24px;
+  }
+
+  .about-photo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .passport-photo {
+    max-width: 250px;
+  }
+
+  .about-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .info-item p {
+    text-align: left;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .about-card {
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .about-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .about-info .title {
+    font-size: 1rem;
+  }
+
+  .about-info p {
+    font-size: 0.9rem;
+  }
+
+  .passport-photo {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .qualifications,
+  .specialties {
+    margin-top: 16px;
+  }
+
+  .contact-wrapper {
+    gap: 20px;
+  }
+
+  .contact-info {
+    gap: 16px;
+  }
+
+  .info-item h3 {
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 16px; /* prevents zoom on iOS */
+  }
+
+  .btn-submit {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+}
+.contact-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #f8fafc, #eef2f7);
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contact-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.contact-header p {
+  color: #6b7280;
+  margin-top: 10px;
+}
+
+/* Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 30px;
+}
+
+/* Cards */
+.contact-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.12);
+}
+
+.contact-card h3 {
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+/* Info Rows */
+.info-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.info-row .icon {
+  font-size: 22px;
+  margin-top: 4px;
+}
+
+.info-row label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.info-row a,
+.info-row p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+  text-decoration: none;
+}
+
+/* CTA Card */
+.action-card p {
+  color: #4b5563;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.primary-btn {
+  flex: 1;
+  padding: 14px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.secondary-btn {
+  flex: 1;
+  padding: 14px;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.Imgshapes {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 3/4;
+}
+
+/* Enhanced box shadows for cards */
+.about-card {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.contact-card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.thumb {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.thumb:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
