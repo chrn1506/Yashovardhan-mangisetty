@@ -1,10 +1,69 @@
 <app-header></app-header>
 
 <main>
+  <section id="booking" class="section booking-preview">
+    <div class="container booking-grid">
+      <div class="booking-left">
+        <h2 class="booking-doctor-name">Dr. Yashovardhan Mangisetty</h2>
+        <p class="booking-specialty">Pulmonologist</p>
+
+        <div class="booking-list-card">
+          <div class="clinic-row">
+            <div class="clinic-text">
+              <h3>Breath Well Pulmonology and Specialty Clinics</h3>
+              <p>Available from 06:00 PM - 09:00 PM</p>
+            </div>
+            <a href="#contact" class="book-btn">Book Appointment</a>
+          </div>
+
+          <div class="clinic-row">
+            <div class="clinic-text">
+              <h3>Yashoda Hospital</h3>
+              <p>JNTU to Hitech City Main Rd, Hyderabad</p>
+            </div>
+            <a href="#contact" class="book-btn">Book Appointment</a>
+          </div>
+
+          <div class="clinic-row">
+            <div class="clinic-text">
+              <h3>TENET and BREATH WELL Clinic</h3>
+              <p>TENET and BREATH WELL Clinic, Not Available</p>
+            </div>
+            <a href="#contact" class="book-btn">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-image-card">
+        <img src="assets/images/docter_image1.jpeg" alt="Dr. Yashovardhan Mangisetty" />
+      </div>
+    </div>
+  </section>
+
   <section id="about" class="section about">
     <div class="container">
       <h2>About</h2>
       <div class="about-card">
+        <div class="about-photo">
+          <div class="about-photo-frame">
+            <img class="Imgshapes" src="assets/images/docter_image1.jpeg" alt="Dr. Yashovardhan mangisetty" />
+          </div>
+
+          <div class="about-photo-info">
+            <h4>Dr. Yashovardhan Mangisetty</h4>
+            <p class="role">Pulmonologist</p>
+            <p class="exp">12 years of experience</p>
+          </div>
+
+          <div class="about-socials">
+            <h5>Socials</h5>
+            <div class="about-social-links">
+              <a href="#" aria-label="Instagram">IG</a>
+              <a href="#" aria-label="Facebook">FB</a>
+            </div>
+          </div>
+        </div>
+
         <div class="about-info">
           <h3>Dr.Yashovardhan mangisetty</h3>
           <p class="title">MBBS, MD, DNB (Pulmonology), EDARM (Switzerland), FIAB, FAAI (PGIMER)</p>
@@ -32,10 +91,100 @@
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="about-photo">
-          <img class="Imgshapes" src="assets/images/docter_image1.jpeg" alt="Dr. Yashovardhan mangisetty" />
+  <section id="view-clinic" class="section view-clinic-section">
+    <div class="container">
+      <div class="view-clinic-header">
+        <h2>View Our Clinic</h2>
+        <p>Step into Our Clinic, Explore Amenities, Check Timings</p>
+      </div>
+
+      @for (clinic of viewClinics; track clinic.name) {
+        <article class="view-clinic-card">
+          <div class="view-clinic-left">
+            <h3>{{ clinic.name }}</h3>
+            <p>{{ clinic.address }}</p>
+
+            <div class="view-clinic-actions">
+              <a [href]="clinic.bookLink" class="vc-btn vc-btn-primary">Book Appointment</a>
+              <a [href]="clinic.callLink" class="vc-btn vc-btn-soft">Call Clinic</a>
+              <a [href]="clinic.directionsLink" class="vc-btn vc-btn-soft" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </div>
+
+            <div class="view-clinic-map">
+              <iframe
+                [src]="clinic.mapEmbedUrl"
+                [attr.title]="'Map for ' + clinic.name"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="view-clinic-right">
+            <h4>My timings at the clinic</h4>
+            <div class="view-clinic-timings">
+              @for (timing of clinic.timings; track timing.day) {
+                <div class="vc-timing-row">
+                  <span>{{ timing.day }}</span>
+                  <span>{{ timing.time }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+      <div class="testimonials-header">
+        <h2>Testimonials</h2>
+        <p>Take a look at what our clients have to say about us</p>
+      </div>
+
+      <div class="testimonials-carousel">
+        <button
+          class="t-arrow t-arrow-left"
+          type="button"
+          (click)="prevTestimonials()"
+          [disabled]="!canGoPrevTestimonials"
+          aria-label="Previous testimonials"
+        >
+          &#10094;
+        </button>
+
+        <div
+          class="testimonials-viewport"
+          [style.--slide-index]="testimonialIndex"
+          [style.--cards-per-view]="cardsPerView"
+        >
+          <div class="testimonials-track">
+            @for (item of testimonials; track item.name) {
+              <article class="testimonial-card">
+                <span class="t-quote">&#10077;</span>
+                <p class="t-message">{{ item.quote }}</p>
+                <p class="t-rating">{{ starText(item.rating) }}</p>
+                <h4>{{ item.name }}</h4>
+                <p class="t-time">{{ item.yearsAgo }} years ago</p>
+              </article>
+            }
+          </div>
         </div>
+
+        <button
+          class="t-arrow t-arrow-right"
+          type="button"
+          (click)="nextTestimonials()"
+          [disabled]="!canGoNextTestimonials"
+          aria-label="Next testimonials"
+        >
+          &#10095;
+        </button>
       </div>
     </div>
   </section>
@@ -51,29 +200,79 @@
     </div>
   </section>
 
-  <section id="treatment1" class="section treatments">
+  <section id="treatments" class="section treatments-section">
     <div class="container">
-      <h2>Treatment 1</h2>
-      <p>Details about Treatment 1.</p>
+      <div class="treatments-header">
+        <h2>Treatments Offered</h2>
+        <p>Take a look at some of the more common treatments offered by us</p>
+      </div>
+
+      <div class="treatments-grid">
+        @for (item of treatmentsOffered; track item.id) {
+          <article class="treatment-card">
+            <img [src]="item.image" [alt]="item.title" (error)="onTreatmentImageError($event)" />
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.summary }}</p>
+            <button type="button" (click)="openTreatmentModal(item)">Read More</button>
+          </article>
+        }
+      </div>
     </div>
   </section>
 
-  <section id="treatment2" class="section treatments">
-    <div class="container">
-      <h2>Treatment 2</h2>
-      <p>Details about Treatment 2.</p>
-    </div>
-  </section>
+  @if (isTreatmentModalOpen && selectedTreatment) {
+    <div class="treatment-modal-backdrop" (click)="closeTreatmentModal()">
+      <div class="treatment-modal-shell" (click)="$event.stopPropagation()">
+        <button class="treatment-modal-close" type="button" (click)="closeTreatmentModal()" aria-label="Close treatment details">
+          &times;
+        </button>
 
-  <section id="treatment3" class="section treatments">
-    <div class="container">
-      <h2>Treatment 3</h2>
-      <p>Details about Treatment 3.</p>
+        <div class="treatment-modal-hero">
+          <img [src]="selectedTreatment.image" [alt]="selectedTreatment.title" (error)="onTreatmentImageError($event)" />
+        </div>
+
+        <div class="treatment-modal-content">
+          <div class="treatment-modal-main">
+            <h3>{{ selectedTreatment.title }}</h3>
+            <p>{{ selectedTreatment.intro }}</p>
+
+            <h4>Diagnosis</h4>
+            <ul>
+              @for (line of selectedTreatment.diagnosis; track line) {
+                <li>{{ line }}</li>
+              }
+            </ul>
+
+            <h4>Treatment</h4>
+            <ul>
+              @for (line of selectedTreatment.treatmentPlan; track line) {
+                <li>{{ line }}</li>
+              }
+            </ul>
+          </div>
+
+          <aside class="treatment-modal-side">
+            <h5>Other treatments</h5>
+            <div class="treatment-side-list">
+              @for (item of treatmentsOffered; track item.id) {
+                <button
+                  type="button"
+                  class="treatment-side-btn"
+                  [class.active]="item.id === selectedTreatment.id"
+                  (click)="selectTreatment(item)"
+                >
+                  {{ item.title }}
+                </button>
+              }
+            </div>
+          </aside>
+        </div>
+      </div>
     </div>
-  </section>
+  }
 
   <section id="contact" class="contact-section">
-  <div class="contact-container">
+  <div class="container contact-container">
 
     <div class="contact-header">
       <h2>Contact Us</h2>

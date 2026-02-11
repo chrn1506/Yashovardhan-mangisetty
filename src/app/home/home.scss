@@ -5,6 +5,22 @@
   // background: #e8f4f8;
 }
 
+main {
+  background: linear-gradient(180deg, #f6f8fb 0%, #f2f5f9 100%);
+}
+
+main > .section {
+  min-height: auto;
+  padding: 32px 0;
+  margin-top: 10px;
+  border-bottom: 1px solid #e2e8f0;
+  background: transparent;
+}
+
+main > .section:nth-child(even) {
+  background: transparent;
+}
+
 @media (max-width: 768px) {
   main {
     padding-bottom: 20px;
@@ -17,16 +33,131 @@
   }
 }
 
+/* Booking Preview Section */
+.booking-preview {
+  background: transparent;
+  padding: 36px 0;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.booking-left {
+  padding-top: 4px;
+}
+
+.booking-doctor-name {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: #101828;
+  letter-spacing: -0.01em;
+}
+
+.booking-specialty {
+  margin: 8px 0 22px;
+  font-size: 2rem;
+  color: #5f6b76;
+  font-weight: 500;
+}
+
+.booking-list-card {
+  background: #ffffff;
+  border: 1px solid #d5d9dd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.clinic-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.clinic-row:last-child {
+  border-bottom: none;
+}
+
+.clinic-text h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.clinic-text p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.book-btn {
+  background: #2f667d;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  padding: 11px 16px;
+  white-space: nowrap;
+}
+
+.book-btn:hover {
+  background: #235165;
+}
+
+.booking-image-card {
+  padding: 0;
+  overflow: hidden;
+  max-width: 360px;
+  justify-self: center;
+  border-radius: 0;
+  box-shadow: none;
+  background: #dad6ce;
+}
+
+.booking-image-card img {
+  width: 100%;
+  height: 100%;
+  max-height: 640px;
+  min-height: 560px;
+  object-fit: cover;
+  display: block;
+}
+
 /* About Section */
 .about-card {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 340px 1fr;
   gap: 40px;
   align-items: start;
   background: white;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.about-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.about-photo-frame {
+  width: 100%;
+  max-width: 340px;
+  background: #e9e5dd;
 }
 
 .about-info h3 {
@@ -105,6 +236,492 @@
   object-fit: cover;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
   aspect-ratio: 3/4;
+}
+
+.about-photo .Imgshapes {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 0;
+  object-fit: cover;
+  box-shadow: none;
+  aspect-ratio: 3/4;
+  display: block;
+}
+
+.about-photo-info {
+  width: min(520px, calc(100% - 20px));
+  background: #f8f8f8;
+  margin-top: -16px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 14px 20px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  z-index: 1;
+}
+
+.about-photo-info h4 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.about-photo-info .role {
+  margin: 4px 0 0;
+  color: #4b5563;
+  font-size: 1.08rem;
+}
+
+.about-photo-info .exp {
+  margin: 4px 0 0;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.about-socials {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.about-socials h5 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.about-social-links {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.about-social-links a {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #bbf7d0;
+  color: #065f46;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* View Clinic Section */
+.view-clinic-section {
+  padding-top: 30px;
+}
+
+.view-clinic-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.view-clinic-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #111827;
+}
+
+.view-clinic-header p {
+  margin: 10px 0 0;
+  color: #5b6470;
+}
+
+.view-clinic-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.view-clinic-left h3 {
+  margin: 0;
+  font-size: 1.55rem;
+  color: #111827;
+}
+
+.view-clinic-left p {
+  margin: 8px 0 14px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.view-clinic-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.vc-btn {
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.vc-btn-primary {
+  background: #1f5f86;
+  color: #ffffff;
+}
+
+.vc-btn-soft {
+  background: #b8f0c9;
+  color: #135a3a;
+}
+
+.view-clinic-map {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #d8dde2;
+}
+
+.view-clinic-map iframe {
+  width: 100%;
+  height: 220px;
+  display: block;
+  border: 0;
+}
+
+.view-clinic-right h4 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.view-clinic-timings {
+  border: 1px solid #d3d7dc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vc-timing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e1e4e8;
+  color: #374151;
+}
+
+.vc-timing-row:last-child {
+  border-bottom: 0;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding-top: 28px;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.testimonials-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  color: #111827;
+}
+
+.testimonials-header p {
+  margin: 10px 0 0;
+  color: #6b7280;
+}
+
+.testimonials-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testimonials-viewport {
+  --t-gap: 18px;
+  --cards-per-view: 3;
+  --slide-index: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.testimonials-track {
+  display: flex;
+  gap: var(--t-gap);
+  transform: translateX(
+    calc(
+      (var(--slide-index) * -1) * (
+          (100% - ((var(--cards-per-view) - 1) * var(--t-gap))) / var(--cards-per-view) + var(--t-gap)
+        )
+    )
+  );
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.testimonial-card {
+  flex: 0 0
+    calc(
+      (100% - ((var(--cards-per-view) - 1) * var(--t-gap))) / var(--cards-per-view)
+    );
+  background: linear-gradient(180deg, #f9fbff 0%, #f2f6fb 100%);
+  border: 1px solid #dbe4ef;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  min-height: 260px;
+}
+
+.t-quote {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f5f86;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.t-message {
+  margin: 0;
+  color: #243244;
+  line-height: 1.6;
+  font-size: 0.96rem;
+}
+
+.t-rating {
+  margin: 12px 0 10px;
+  color: #f59e0b;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.testimonial-card h4 {
+  margin: 0;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.t-time {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 0.88rem;
+}
+
+.t-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #24556f;
+  font-size: 1.45rem;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+}
+
+.t-arrow:hover {
+  background: #f0f7ff;
+}
+
+.t-arrow:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Treatments Section */
+.treatments-section {
+  padding-top: 22px;
+}
+
+.treatments-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.treatments-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #0f172a;
+}
+
+.treatments-header p {
+  margin: 10px 0 0;
+  color: #5b6470;
+}
+
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.treatment-card {
+  background: #ffffff;
+  border: 1px solid #d8dee6;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.treatment-card img {
+  width: 100%;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.treatment-card h3 {
+  margin: 10px 0 8px;
+  font-size: 1.03rem;
+  line-height: 1.35;
+  color: #111827;
+}
+
+.treatment-card p {
+  margin: 0;
+  text-align: left;
+  color: #6b7280;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.treatment-card button {
+  margin-top: auto;
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  color: #1f5f86;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 10px 0 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.treatment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.treatment-modal-shell {
+  width: min(1000px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  background: #f7fafc;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.3);
+  position: relative;
+}
+
+.treatment-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.treatment-modal-hero img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.treatment-modal-content {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 24px;
+  padding: 20px;
+}
+
+.treatment-modal-main h3 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.treatment-modal-main p {
+  margin: 0 0 14px;
+  text-align: left;
+  color: #334155;
+}
+
+.treatment-modal-main h4 {
+  margin: 14px 0 8px;
+  color: #0f172a;
+}
+
+.treatment-modal-main ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.treatment-modal-main li {
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.treatment-modal-side {
+  border-left: 1px solid #d8dee6;
+  padding-left: 18px;
+}
+
+.treatment-modal-side h5 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.treatment-side-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.treatment-side-btn {
+  border: 1px solid #c9e7d3;
+  background: #d9f7e2;
+  color: #125e3d;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.86rem;
+}
+
+.treatment-side-btn.active {
+  background: #1f5f86;
+  border-color: #1f5f86;
+  color: #ffffff;
 }
 
 /* Contact Section */
@@ -207,6 +824,35 @@
 
 /* Tablet Responsive */
 @media (max-width: 768px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .booking-doctor-name {
+    font-size: 2rem;
+  }
+
+  .booking-specialty {
+    font-size: 1.35rem;
+    margin-bottom: 16px;
+  }
+
+  .clinic-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .booking-image-card img {
+    min-height: 420px;
+    max-height: 500px;
+  }
+
   .about-card {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -226,6 +872,60 @@
     font-size: 1.5rem;
   }
 
+  .about-photo-info h4 {
+    font-size: 1.55rem;
+  }
+
+  .about-photo-info .role {
+    font-size: 1rem;
+  }
+
+  .about-socials h5 {
+    font-size: 1.6rem;
+  }
+
+  .view-clinic-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .view-clinic-left h3 {
+    font-size: 1.3rem;
+  }
+
+  .view-clinic-right h4 {
+    font-size: 1.2rem;
+  }
+
+  .view-clinic-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-viewport {
+    --cards-per-view: 1;
+    --t-gap: 12px;
+  }
+
+  .testimonial-card {
+    min-height: auto;
+  }
+
+  .treatments-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .treatment-modal-content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .treatment-modal-side {
+    border-left: 0;
+    border-top: 1px solid #d8dee6;
+    padding-left: 0;
+    padding-top: 14px;
+  }
+
   .contact-wrapper {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -238,6 +938,31 @@
 
 /* Mobile Responsive */
 @media (max-width: 480px) {
+  .booking-preview {
+    padding: 24px 0;
+  }
+
+  .booking-doctor-name {
+    font-size: 1.75rem;
+  }
+
+  .booking-specialty {
+    font-size: 1.15rem;
+  }
+
+  .clinic-row {
+    padding: 14px;
+  }
+
+  .clinic-text h3 {
+    font-size: 0.98rem;
+  }
+
+  .booking-image-card img {
+    min-height: 320px;
+    max-height: 420px;
+  }
+
   .about-card {
     padding: 16px;
     gap: 20px;
@@ -258,6 +983,76 @@
   .passport-photo {
     max-width: 200px;
     margin: 0 auto;
+  }
+
+  .about-photo-frame,
+  .about-photo .Imgshapes {
+    max-width: 280px;
+  }
+
+  .about-photo-info {
+    width: calc(100% - 6px);
+    margin-top: -12px;
+    padding: 14px 12px;
+  }
+
+  .about-photo-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .about-photo-info .role {
+    font-size: 0.98rem;
+  }
+
+  .about-socials h5 {
+    font-size: 1.25rem;
+  }
+
+  .view-clinic-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .view-clinic-header p {
+    font-size: 0.95rem;
+  }
+
+  .view-clinic-left h3 {
+    font-size: 1.1rem;
+  }
+
+  .vc-timing-row {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .testimonials-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .testimonials-header p {
+    font-size: 0.95rem;
+  }
+
+  .testimonials-carousel {
+    gap: 10px;
+  }
+
+  .t-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+
+  .treatments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .treatment-card {
+    min-height: auto;
+  }
+
+  .treatment-modal-main h3 {
+    font-size: 1.45rem;
   }
 
   .qualifications,
@@ -289,13 +1084,13 @@
   }
 }
 .contact-section {
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #f8fafc, #eef2f7);
+  padding: 32px 0;
+  background: transparent;
 }
 
 .contact-container {
-  max-width: 1100px;
-  margin: auto;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .contact-header {
@@ -435,4 +1230,11 @@
 
 .thumb:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Keep About photo style independent from global .Imgshapes card style */
+.about-photo .Imgshapes {
+  max-width: 340px;
+  border-radius: 0;
+  box-shadow: none;
 }

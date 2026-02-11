@@ -6,7 +6,7 @@ import { ScrollToTop } from "./scroll-to-top/scroll-to-top";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, ContactBubble, ScrollToTop],
+  imports: [RouterOutlet, ContactBubble, ScrollToTop],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
