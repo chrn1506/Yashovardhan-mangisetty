@@ -73,33 +73,11 @@ export class Home implements OnDestroy, AfterViewChecked {
     {
       name: 'Breath Well Pulmonology and Specialty Clinics',
       address:
-        "Flat No. 101, First Floor, Kadiri's Apurupa Urban Apartments, Kondapur, Hyderabad, Telangana 500084, India.",
+        'Breath Well Pulmonology and Specialty Clinics, Anantapur, Andhra Pradesh 515001, India.',
       bookLink: '#contact',
       callLink: 'tel:+919999999999',
-      directionsLink: 'https://maps.google.com/?q=Kondapur+Hyderabad',
-      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Kondapur+Hyderabad&output=embed'),
-      timings: this.defaultTimings,
-    },
-    {
-      name: 'Yashoda Hospital',
-      address:
-        'JNTU to Hitech City Main Road, KPHB Colony, Kukatpally, Hyderabad, Telangana 500072, India.',
-      bookLink: '#contact',
-      callLink: 'tel:+919999999998',
-      directionsLink: 'https://maps.google.com/?q=Yashoda+Hospital+Hyderabad',
-      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Yashoda+Hospital+Hyderabad&output=embed'),
-      timings: this.defaultTimings,
-    },
-    {
-      name: 'TENET and BREATH WELL Clinic',
-      address:
-        'TENET and BREATH WELL Clinic, Near Botanical Garden Road, Kondapur, Hyderabad, Telangana, India.',
-      bookLink: '#contact',
-      callLink: 'tel:+919999999997',
-      directionsLink: 'https://maps.google.com/?q=TENET+and+BREATH+WELL+Clinic+Hyderabad',
-      mapEmbedUrl: this.safeMap(
-        'https://www.google.com/maps?q=TENET+and+BREATH+WELL+Clinic+Hyderabad&output=embed'
-      ),
+      directionsLink: 'https://maps.google.com/?q=Anantapur+Andhra+Pradesh+515001',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Anantapur+Andhra+Pradesh+515001&output=embed'),
       timings: this.defaultTimings,
     },
   ];
