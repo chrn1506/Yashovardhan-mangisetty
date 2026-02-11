@@ -18,7 +18,7 @@ export class App {
   protected readonly title = signal('d-portfolio');
 
   constructor() {
-    const pageTitle = 'Dr. Yashovardhan Mangisetty | Pulmonologist in Anantapur';
+    const pageTitle = 'Dr.Yashovardhan Mangisetty | Pulmonologist in Anantapur';
     const description =
       'Expert pulmonology care in Anantapur for asthma, COPD, lung infections, sleep and breathing disorders.';
     const canonicalUrl = 'https://fci.github.io/Yashovardhan-mangisetty/';
