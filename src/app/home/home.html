@@ -192,13 +192,13 @@
       <h2>{{ t('gallery.title') }}</h2>
       <div class="gallery-grid">
         <div class="thumb">
-          <img src="/assets/images/gallery1.jpg" alt="Clinic gallery image 1" loading="lazy" decoding="async" />
+          <img src="assets/images/gallery1.jpg" alt="Clinic gallery image 1" loading="lazy" decoding="async" />
         </div>
         <div class="thumb">
-          <img src="/assets/images/gallery2.jpg" alt="Clinic gallery image 2" loading="lazy" decoding="async" />
+          <img src="assets/images/gallery2.jpg" alt="Clinic gallery image 2" loading="lazy" decoding="async" />
         </div>
         <div class="thumb">
-          <img src="/assets/images/gallery3.jpg" alt="Clinic gallery image 3" loading="lazy" decoding="async" />
+          <img src="assets/images/gallery3.jpg" alt="Clinic gallery image 3" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -214,7 +214,7 @@
       <div class="treatments-grid">
         @for (item of treatmentsOffered; track item.id) {
           <article class="treatment-card">
-            <img [src]="item.image" [alt]="item.title" loading="lazy" decoding="async" (error)="onTreatmentImageError($event)" />
+            <img src="assets/images/allergy.jpg" [alt]="item.title" loading="lazy" decoding="async" (error)="$any($event.target).src='assets/images/docter_image1.jpeg'" />
             <h3>{{ item.title }}</h3>
             <p>{{ item.summary }}</p>
             <button type="button" (click)="openTreatmentModal(item)" aria-haspopup="dialog" [attr.aria-label]="t('common.readMore') + ' ' + item.title">
@@ -234,7 +234,7 @@
         </button>
 
         <div class="treatment-modal-hero">
-          <img [src]="selectedTreatment.image" [alt]="selectedTreatment.title" (error)="onTreatmentImageError($event)" />
+          <img src="assets/images/allergy.jpg" [alt]="selectedTreatment.title" (error)="$any($event.target).src='assets/images/docter_image1.jpeg'" />
         </div>
 
         <div class="treatment-modal-content">

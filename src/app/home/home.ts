@@ -39,7 +39,6 @@ interface TreatmentOffered {
   id: string;
   title: string;
   summary: string;
-  image: string;
   intro: string;
   diagnosis: string[];
   treatmentPlan: string[];
@@ -125,7 +124,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'allergy-asthma',
       title: 'Allergy & Asthma Treatment',
       summary: 'Read more on Allergy & Asthma Treatment',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Allergy and asthma can trigger breathing difficulty, coughing, and chest tightness. Early evaluation helps prevent recurrent attacks.',
       diagnosis: [
@@ -143,7 +141,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'cough-breathlessness',
       title: 'Cough, Breathlessness, Wheezing, Chest Pain',
       summary: 'Read more on Cough, Breathlessness, Wheezing, and Chest Pain',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Persistent cough and breathlessness may indicate airway, infection, or inflammatory lung conditions and need focused assessment.',
       diagnosis: [
@@ -161,7 +158,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'covid-post-covid',
       title: 'COVID-19 and Post-COVID Problems',
       summary: 'Read more on COVID-19 and Post-COVID Problems',
-      image: '/assets/images/allergy.jpg',
       intro:
         'COVID and post-COVID respiratory symptoms may continue for weeks. Structured pulmonary follow-up improves recovery.',
       diagnosis: [
@@ -179,7 +175,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'swine-flu-pneumonia',
       title: 'Swine Flu and Pneumonia Treatment',
       summary: 'Read more on Swine Flu and Pneumonia Treatment',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Swine Flu (H1N1) and pneumonia can cause fever, cough, and breathing discomfort. Early diagnosis prevents complications.',
       diagnosis: [
@@ -197,7 +192,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'lung-cancer',
       title: 'Expert Lung Cancer Diagnosis',
       summary: 'Read more on Expert Lung Cancer Diagnosis',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Early lung cancer detection improves treatment planning. Timely diagnostic pathways are critical.',
       diagnosis: [
@@ -215,7 +209,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'snoring-sleep',
       title: 'Snoring and Other Sleep Problems',
       summary: 'Read more on Snoring and Sleep Problems',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Snoring and poor sleep can indicate obstructive sleep apnea, leading to daytime fatigue and long-term health risks.',
       diagnosis: [
@@ -233,7 +226,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'ild',
       title: 'ILD (Interstitial Lung Disease)',
       summary: 'Read more on ILD Expert Opinion',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Interstitial lung diseases involve lung tissue inflammation and scarring and require specialized evaluation.',
       diagnosis: [
@@ -251,7 +243,6 @@ export class Home implements OnDestroy, AfterViewChecked {
       id: 'blood-investigations',
       title: 'All Blood Investigations',
       summary: 'Read more on All Blood Investigations',
-      image: '/assets/images/allergy.jpg',
       intro:
         'Comprehensive blood investigations support respiratory diagnosis, infection detection, and treatment monitoring.',
       diagnosis: [
@@ -327,14 +318,6 @@ export class Home implements OnDestroy, AfterViewChecked {
 
   selectTreatment(item: TreatmentOffered): void {
     this.selectedTreatment = item;
-  }
-
-  onTreatmentImageError(event: Event): void {
-    const img = event.target as HTMLImageElement | null;
-    if (!img) {
-      return;
-    }
-    img.src = '/assets/images/docter_image1.jpeg';
   }
 
   t(key: string): string {
