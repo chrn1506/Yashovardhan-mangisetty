@@ -1,11 +1,20 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, OnDestroy, inject } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { LanguageService } from '../core/language.service';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
 interface ClinicTiming {
-  day: string;
+  dayKey: string;
   time: string;
 }
 
@@ -42,18 +51,22 @@ interface TreatmentOffered {
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnDestroy {
+export class Home implements OnDestroy, AfterViewChecked {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly document = inject(DOCUMENT);
+  private readonly language = inject(LanguageService);
+  @ViewChild('treatmentModalShell') treatmentModalShell?: ElementRef<HTMLElement>;
+  @ViewChild('treatmentModalCloseBtn') treatmentModalCloseBtn?: ElementRef<HTMLButtonElement>;
+  private shouldFocusModal = false;
 
   private readonly defaultTimings: ClinicTiming[] = [
-    { day: 'Monday', time: '06:00 PM - 09:00 PM' },
-    { day: 'Tuesday', time: '06:00 PM - 09:00 PM' },
-    { day: 'Wednesday', time: '06:00 PM - 09:00 PM' },
-    { day: 'Thursday', time: '06:00 PM - 09:00 PM' },
-    { day: 'Friday', time: '06:00 PM - 09:00 PM' },
-    { day: 'Saturday', time: '06:00 PM - 09:00 PM' },
-    { day: 'Sunday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.monday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.tuesday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.wednesday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.thursday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.friday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.saturday', time: '06:00 PM - 09:00 PM' },
+    { dayKey: 'day.sunday', time: '06:00 PM - 09:00 PM' },
   ];
 
   readonly viewClinics: ViewClinic[] = [
@@ -325,6 +338,7 @@ export class Home implements OnDestroy {
   openTreatmentModal(item: TreatmentOffered): void {
     this.selectedTreatment = item;
     this.isTreatmentModalOpen = true;
+    this.shouldFocusModal = true;
     this.lockBodyScroll();
   }
 
@@ -345,6 +359,42 @@ export class Home implements OnDestroy {
     img.src = '/assets/images/docter_image1.jpeg';
   }
 
+  t(key: string): string {
+    return this.language.t(key);
+  }
+
+  onTestimonialsKeydown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.nextTestimonials();
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.prevTestimonials();
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeydown(event: KeyboardEvent): void {
+    if (!this.isTreatmentModalOpen) {
+      return;
+    }
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeTreatmentModal();
+      return;
+    }
+    if (event.key === 'Tab') {
+      this.maintainModalFocus(event);
+    }
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.isTreatmentModalOpen && this.shouldFocusModal && this.treatmentModalCloseBtn) {
+      this.treatmentModalCloseBtn.nativeElement.focus();
+      this.shouldFocusModal = false;
+    }
+  }
+
   private safeMap(mapUrl: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(mapUrl);
   }
@@ -359,5 +409,29 @@ export class Home implements OnDestroy {
 
   ngOnDestroy(): void {
     this.unlockBodyScroll();
+  }
+
+  private maintainModalFocus(event: KeyboardEvent): void {
+    const modal = this.treatmentModalShell?.nativeElement;
+    if (!modal) {
+      return;
+    }
+    const focusable = modal.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) {
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = this.document.activeElement as HTMLElement | null;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 }

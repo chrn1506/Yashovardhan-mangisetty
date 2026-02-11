@@ -100,20 +100,36 @@ main > .section:nth-child(even) {
 }
 
 .book-btn {
-  background: #2f667d;
+  background: linear-gradient(135deg, #1f5f86, #1a4f70);
   color: #ffffff;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  border-radius: 8px;
-  padding: 11px 16px;
+  border-radius: 10px;
+  padding: 12px 16px;
   white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-btn:hover {
-  background: #235165;
+  filter: brightness(1.05);
+}
+
+.book-btn:focus-visible,
+.vc-btn:focus-visible,
+.t-arrow:focus-visible,
+.treatment-card button:focus-visible,
+.treatment-modal-close:focus-visible,
+.treatment-side-btn:focus-visible,
+.primary-btn:focus-visible,
+.secondary-btn:focus-visible {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 2px;
 }
 
 .booking-image-card {
@@ -358,21 +374,36 @@ main > .section:nth-child(even) {
 
 .vc-btn {
   text-decoration: none;
-  border-radius: 8px;
-  padding: 11px 12px;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-weight: 700;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .vc-btn-primary {
-  background: #1f5f86;
+  background: linear-gradient(135deg, #1f5f86, #1a4f70);
   color: #ffffff;
 }
 
 .vc-btn-soft {
-  background: #b8f0c9;
+  background: #e8f7ee;
   color: #135a3a;
+  border: 1px solid #b7e3c7;
+}
+
+.vc-btn-primary:hover,
+.primary-btn:hover {
+  filter: brightness(1.05);
+}
+
+.vc-btn-soft:hover,
+.secondary-btn:hover {
+  background: #d8f0e2;
 }
 
 .view-clinic-map {
@@ -602,15 +633,22 @@ main > .section:nth-child(even) {
 .treatment-card button {
   margin-top: auto;
   align-self: flex-start;
-  border: none;
-  background: transparent;
+  border: 1px solid #1f5f86;
+  background: #ffffff;
   color: #1f5f86;
   font-weight: 700;
   letter-spacing: 0.01em;
-  padding: 10px 0 0;
+  padding: 10px 14px;
   cursor: pointer;
   text-transform: uppercase;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+  border-radius: 10px;
+  min-height: 42px;
+}
+
+.treatment-card button:hover {
+  background: #1f5f86;
+  color: #ffffff;
 }
 
 .treatment-modal-backdrop {
@@ -722,6 +760,19 @@ main > .section:nth-child(even) {
   background: #1f5f86;
   border-color: #1f5f86;
   color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track {
+    transition: none;
+  }
+
+  .contact-card,
+  .thumb,
+  .book-btn,
+  .t-arrow {
+    transition: none;
+  }
 }
 
 /* Contact Section */
@@ -1174,23 +1225,32 @@ main > .section:nth-child(even) {
 
 .primary-btn {
   flex: 1;
-  padding: 14px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #1f5f86, #1a4f70);
   color: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
 }
 
 .secondary-btn {
   flex: 1;
-  padding: 14px;
-  border: 2px solid #2563eb;
-  color: #2563eb;
-  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #b7e3c7;
+  background: #e8f7ee;
+  color: #135a3a;
+  border-radius: 10px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
 }
 

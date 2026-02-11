@@ -5,15 +5,15 @@
     <div class="container booking-grid">
       <div class="booking-left">
         <h2 class="booking-doctor-name">Dr. Yashovardhan Mangisetty</h2>
-        <p class="booking-specialty">Pulmonologist</p>
+        <p class="booking-specialty">{{ t('booking.specialty') }}</p>
 
         <div class="booking-list-card">
           <div class="clinic-row">
             <div class="clinic-text">
               <h3>Breath Well Pulmonology and Specialty Clinics</h3>
-              <p>Available from 06:00 PM - 09:00 PM</p>
+              <p>{{ t('booking.availability') }}</p>
             </div>
-            <a href="#contact" class="book-btn">Book Appointment</a>
+            <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
           </div>
 
           <div class="clinic-row">
@@ -21,7 +21,7 @@
               <h3>Yashoda Hospital</h3>
               <p>JNTU to Hitech City Main Rd, Hyderabad</p>
             </div>
-            <a href="#contact" class="book-btn">Book Appointment</a>
+            <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
           </div>
 
           <div class="clinic-row">
@@ -29,34 +29,48 @@
               <h3>TENET and BREATH WELL Clinic</h3>
               <p>TENET and BREATH WELL Clinic, Not Available</p>
             </div>
-            <a href="#contact" class="book-btn">Book Appointment</a>
+            <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
           </div>
         </div>
       </div>
 
       <div class="booking-image-card">
-        <img src="assets/images/docter_image1.jpeg" alt="Dr. Yashovardhan Mangisetty" />
+        <img
+          src="assets/images/docter_image1.jpeg"
+          alt="Dr. Yashovardhan Mangisetty"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="720"
+          height="960"
+        />
       </div>
     </div>
   </section>
 
   <section id="about" class="section about">
     <div class="container">
-      <h2>About</h2>
+      <h2>{{ t('about.title') }}</h2>
       <div class="about-card">
         <div class="about-photo">
           <div class="about-photo-frame">
-            <img class="Imgshapes" src="assets/images/docter_image1.jpeg" alt="Dr. Yashovardhan mangisetty" />
+            <img
+              class="Imgshapes"
+              src="assets/images/docter_image1.jpeg"
+              alt="Dr. Yashovardhan mangisetty"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <div class="about-photo-info">
             <h4>Dr. Yashovardhan Mangisetty</h4>
-            <p class="role">Pulmonologist</p>
-            <p class="exp">12 years of experience</p>
+            <p class="role">{{ t('booking.specialty') }}</p>
+            <p class="exp">{{ t('about.yearsExp') }}</p>
           </div>
 
           <div class="about-socials">
-            <h5>Socials</h5>
+            <h5>{{ t('about.socials') }}</h5>
             <div class="about-social-links">
               <a href="#" aria-label="Instagram">IG</a>
               <a href="#" aria-label="Facebook">FB</a>
@@ -98,8 +112,8 @@
   <section id="view-clinic" class="section view-clinic-section">
     <div class="container">
       <div class="view-clinic-header">
-        <h2>View Our Clinic</h2>
-        <p>Step into Our Clinic, Explore Amenities, Check Timings</p>
+        <h2>{{ t('clinic.title') }}</h2>
+        <p>{{ t('clinic.subtitle') }}</p>
       </div>
 
       @for (clinic of viewClinics; track clinic.name) {
@@ -109,9 +123,9 @@
             <p>{{ clinic.address }}</p>
 
             <div class="view-clinic-actions">
-              <a [href]="clinic.bookLink" class="vc-btn vc-btn-primary">Book Appointment</a>
-              <a [href]="clinic.callLink" class="vc-btn vc-btn-soft">Call Clinic</a>
-              <a [href]="clinic.directionsLink" class="vc-btn vc-btn-soft" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              <a [href]="clinic.bookLink" class="vc-btn vc-btn-primary">{{ t('common.bookAppointment') }}</a>
+              <a [href]="clinic.callLink" class="vc-btn vc-btn-soft">{{ t('common.callClinic') }}</a>
+              <a [href]="clinic.directionsLink" class="vc-btn vc-btn-soft" target="_blank" rel="noopener noreferrer">{{ t('common.getDirections') }}</a>
             </div>
 
             <div class="view-clinic-map">
@@ -125,11 +139,11 @@
           </div>
 
           <div class="view-clinic-right">
-            <h4>My timings at the clinic</h4>
+            <h4>{{ t('clinic.timingsTitle') }}</h4>
             <div class="view-clinic-timings">
-              @for (timing of clinic.timings; track timing.day) {
+              @for (timing of clinic.timings; track timing.dayKey) {
                 <div class="vc-timing-row">
-                  <span>{{ timing.day }}</span>
+                  <span>{{ t(timing.dayKey) }}</span>
                   <span>{{ timing.time }}</span>
                 </div>
               }
@@ -143,11 +157,11 @@
   <section id="testimonials" class="section testimonials-section">
     <div class="container">
       <div class="testimonials-header">
-        <h2>Testimonials</h2>
-        <p>Take a look at what our clients have to say about us</p>
+        <h2>{{ t('testimonials.title') }}</h2>
+        <p>{{ t('testimonials.subtitle') }}</p>
       </div>
 
-      <div class="testimonials-carousel">
+      <div class="testimonials-carousel" tabindex="0" (keydown)="onTestimonialsKeydown($event)" aria-label="Testimonials carousel">
         <button
           class="t-arrow t-arrow-left"
           type="button"
@@ -191,7 +205,7 @@
 
   <section id="gallery" class="section gallery">
     <div class="container">
-      <h2>Gallery</h2>
+      <h2>{{ t('gallery.title') }}</h2>
       <div class="gallery-grid">
         <div class="thumb">Image 1</div>
         <div class="thumb">Image 2</div>
@@ -203,17 +217,19 @@
   <section id="treatments" class="section treatments-section">
     <div class="container">
       <div class="treatments-header">
-        <h2>Treatments Offered</h2>
-        <p>Take a look at some of the more common treatments offered by us</p>
+        <h2>{{ t('treatments.title') }}</h2>
+        <p>{{ t('treatments.subtitle') }}</p>
       </div>
 
       <div class="treatments-grid">
         @for (item of treatmentsOffered; track item.id) {
           <article class="treatment-card">
-            <img [src]="item.image" [alt]="item.title" (error)="onTreatmentImageError($event)" />
+            <img [src]="item.image" [alt]="item.title" loading="lazy" decoding="async" (error)="onTreatmentImageError($event)" />
             <h3>{{ item.title }}</h3>
             <p>{{ item.summary }}</p>
-            <button type="button" (click)="openTreatmentModal(item)">Read More</button>
+            <button type="button" (click)="openTreatmentModal(item)" aria-haspopup="dialog" [attr.aria-label]="t('common.readMore') + ' ' + item.title">
+              {{ t('common.readMore') }}
+            </button>
           </article>
         }
       </div>
@@ -221,9 +237,9 @@
   </section>
 
   @if (isTreatmentModalOpen && selectedTreatment) {
-    <div class="treatment-modal-backdrop" (click)="closeTreatmentModal()">
-      <div class="treatment-modal-shell" (click)="$event.stopPropagation()">
-        <button class="treatment-modal-close" type="button" (click)="closeTreatmentModal()" aria-label="Close treatment details">
+    <div class="treatment-modal-backdrop" (click)="closeTreatmentModal()" role="presentation">
+      <div class="treatment-modal-shell" #treatmentModalShell role="dialog" aria-modal="true" [attr.aria-label]="selectedTreatment.title" (click)="$event.stopPropagation()">
+        <button class="treatment-modal-close" #treatmentModalCloseBtn type="button" (click)="closeTreatmentModal()" aria-label="Close treatment details">
           &times;
         </button>
 
@@ -236,14 +252,14 @@
             <h3>{{ selectedTreatment.title }}</h3>
             <p>{{ selectedTreatment.intro }}</p>
 
-            <h4>Diagnosis</h4>
+            <h4>{{ t('treatments.diagnosis') }}</h4>
             <ul>
               @for (line of selectedTreatment.diagnosis; track line) {
                 <li>{{ line }}</li>
               }
             </ul>
 
-            <h4>Treatment</h4>
+            <h4>{{ t('treatments.treatment') }}</h4>
             <ul>
               @for (line of selectedTreatment.treatmentPlan; track line) {
                 <li>{{ line }}</li>
@@ -252,7 +268,7 @@
           </div>
 
           <aside class="treatment-modal-side">
-            <h5>Other treatments</h5>
+            <h5>{{ t('treatments.other') }}</h5>
             <div class="treatment-side-list">
               @for (item of treatmentsOffered; track item.id) {
                 <button
@@ -274,21 +290,21 @@
   <section id="contact" class="contact-section">
   <div class="container contact-container">
 
-    <div class="contact-header">
-      <h2>Contact Us</h2>
-      <p>Get in touch with us for any inquiries</p>
+      <div class="contact-header">
+      <h2>{{ t('contact.title') }}</h2>
+      <p>{{ t('contact.subtitle') }}</p>
     </div>
 
     <div class="contact-grid">
 
       <!-- LEFT : Contact Info -->
       <div class="contact-card info-card">
-        <h3>Reach Us</h3>
+        <h3>{{ t('contact.reach') }}</h3>
 
         <div class="info-row">
           <span class="icon">📧</span>
           <div>
-            <label>Email</label>
+            <label>{{ t('contact.email') }}</label>
             <a href="mailto:doctor@example.com">doctor@example.com</a>
           </div>
         </div>
@@ -296,7 +312,7 @@
         <div class="info-row">
           <span class="icon">📱</span>
           <div>
-            <label>Phone</label>
+            <label>{{ t('contact.phone') }}</label>
             <a href="tel:+1234567890">(123) 456-7890</a>
           </div>
         </div>
@@ -304,7 +320,7 @@
         <div class="info-row">
           <span class="icon">📍</span>
           <div>
-            <label>Address</label>
+            <label>{{ t('contact.address') }}</label>
             <p>123 Medical Center Dr.<br />City, State 12345</p>
           </div>
         </div>
@@ -312,7 +328,7 @@
         <div class="info-row">
           <span class="icon">🕒</span>
           <div>
-            <label>Hours</label>
+            <label>{{ t('contact.hours') }}</label>
             <p>
               Mon-Fri: 9:00 AM – 5:00 PM<br />
               Sat: 10:00 AM – 2:00 PM<br />
@@ -324,15 +340,14 @@
 
       <!-- RIGHT : Call To Action -->
       <div class="contact-card action-card">
-        <h3>Need Assistance?</h3>
+        <h3>{{ t('contact.needHelp') }}</h3>
         <p>
-          Our medical team is available to help you with appointments,
-          consultations, and general inquiries.
+          {{ t('contact.needHelpDesc') }}
         </p>
 
         <div class="action-buttons">
-          <a href="mailto:doctor@example.com" class="primary-btn">Email Us</a>
-          <a href="tel:+1234567890" class="secondary-btn">Call Now</a>
+          <a href="mailto:doctor@example.com" class="primary-btn">{{ t('contact.emailUs') }}</a>
+          <a href="tel:+1234567890" class="secondary-btn">{{ t('contact.callNow') }}</a>
         </div>
       </div>
 

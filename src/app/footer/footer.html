@@ -5,21 +5,21 @@
         <span class="logo-mark">DR</span>
       </a>
       <p class="brand-text">
-        Personalized pulmonary care with modern diagnostics and patient-focused treatment.
+        {{ t('footer.tagline') }}
       </p>
     </div>
 
     <div class="footer-columns">
       <div class="footer-col">
-        <h3>About</h3>
-        <a href="#booking">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+        <h3>{{ t('footer.about') }}</h3>
+        <a href="#booking">{{ t('nav.home') }}</a>
+        <a href="#about">{{ t('nav.about') }}</a>
+        <a href="#gallery">{{ t('nav.gallery') }}</a>
+        <a href="#contact">{{ t('nav.contact') }}</a>
       </div>
 
       <div class="footer-col footer-contact">
-        <h3>Contact</h3>
+        <h3>{{ t('footer.contact') }}</h3>
         <p>Flat No. 101, Kondapur, Hyderabad, Telangana 500084</p>
         <a href="tel:+917703220969">+91 7703220969</a>
         <a href="mailto:breathwellclinic@gmail.com">breathwellclinic@gmail.com</a>
@@ -29,7 +29,7 @@
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>Copyright &copy; {{ currentYear }} dr.care</p>
+      <p>{{ t('footer.copyright') }} &copy; {{ currentYear }} dr.care</p>
       <div class="footer-socials">
         <a href="#" aria-label="Instagram">IG</a>
         <a href="#" aria-label="Facebook">FB</a>

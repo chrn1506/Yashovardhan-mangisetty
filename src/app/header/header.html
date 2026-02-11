@@ -1,7 +1,7 @@
 <header class="site-header" role="banner">
 	<div class="container">
 		<div class="brand">
-			<a href="#" class="logo">Doctor Portfolio</a>
+			<a href="#booking" class="logo">Doctor Portfolio</a>
 		</div>
 
 		<button class="hamburger" aria-label="Toggle menu" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
@@ -12,17 +12,30 @@
 
 		<nav class="main-nav" [class.open]="isMenuOpen" role="navigation">
 			<ul>
-				<li><a href="#about" (click)="closeMenu()">About</a></li>
-				<li><a href="#gallery" (click)="closeMenu()">Gallery</a></li>
+				<li><a href="#booking" (click)="closeMenu()">{{ t('nav.home') }}</a></li>
+				<li><a href="#about" (click)="closeMenu()">{{ t('nav.about') }}</a></li>
+				<li><a href="#gallery" (click)="closeMenu()">{{ t('nav.gallery') }}</a></li>
 				<li class="has-dropdown" [class.open]="treatmentsOpen">
-					<a href="#" (click)="toggleTreatments($event)">Treatments</a>
+					<a href="#" (click)="toggleTreatments($event)">{{ t('more.title') }}</a>
 					<ul class="dropdown">
-						<li><a href="#treatment1" (click)="closeMenu()">Treatment 1</a></li>
-						<li><a href="#treatment2" (click)="closeMenu()">Treatment 2</a></li>
-						<li><a href="#treatment3" (click)="closeMenu()">Treatment 3</a></li>
+						<li><a href="#treatments" (click)="closeMenu()">{{ t('treatments.title') }}</a></li>
+						<li><a href="#view-clinic" (click)="closeMenu()">{{ t('clinic.title') }}</a></li>
+						<li><a href="#testimonials" (click)="closeMenu()">{{ t('testimonials.title') }}</a></li>
 					</ul>
 				</li>
-				<li><a href="#contact" (click)="closeMenu()">Contact</a></li>
+				<li><a href="#contact" (click)="closeMenu()">{{ t('nav.contact') }}</a></li>
+				<li class="lang-switcher" aria-label="Language switcher">
+					@for (lang of languages; track lang) {
+						<button
+							type="button"
+							(click)="setLanguage(lang)"
+							[class.active]="currentLanguage() === lang"
+							[attr.aria-pressed]="currentLanguage() === lang"
+						>
+							{{ t('lang.' + (lang === 'en' ? 'english' : lang === 'hi' ? 'hindi' : 'telugu')) }}
+						</button>
+					}
+				</li>
 			</ul>
 		</nav>
 	</div>
