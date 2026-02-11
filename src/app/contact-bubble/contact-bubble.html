@@ -10,6 +10,7 @@
         <p class="email">{{ email }}</p>
         <div class="actions">
           <a class="btn" [href]="'mailto:' + email">Email</a>
+          <a class="btn whatsapp" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <button class="btn secondary" (click)="copyEmail()">Copy</button>
         </div>
         <button class="close" aria-label="Close" (click)="toggle()">×</button>

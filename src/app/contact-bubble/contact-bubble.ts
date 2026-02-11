@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class ContactBubble {
   isOpen = false;
   email = 'doctor@example.com';
+  phone = '+917703220969';
+  whatsappMessage = 'Hello Doctor, I need assistance.';
 
   toggle() {
     this.isOpen = !this.isOpen;
@@ -24,5 +26,9 @@ export class ContactBubble {
       document.execCommand('copy');
       document.body.removeChild(ta);
     }
+  }
+
+  get whatsappUrl(): string {
+    return `https://wa.me/${this.phone.replace('+', '')}?text=${encodeURIComponent(this.whatsappMessage)}`;
   }
 }

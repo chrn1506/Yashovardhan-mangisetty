@@ -112,6 +112,15 @@
   background: #e5e5e5;
 }
 
+.contact-bubble .btn.whatsapp {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+}
+
+.contact-bubble .btn.whatsapp:hover {
+  filter: brightness(1.05);
+}
+
 .contact-bubble .close {
   position: absolute;
   right: 8px;

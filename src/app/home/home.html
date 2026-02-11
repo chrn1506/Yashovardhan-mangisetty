@@ -207,9 +207,15 @@
     <div class="container">
       <h2>{{ t('gallery.title') }}</h2>
       <div class="gallery-grid">
-        <div class="thumb">Image 1</div>
-        <div class="thumb">Image 2</div>
-        <div class="thumb">Image 3</div>
+        <div class="thumb">
+          <img src="/assets/images/gallery1.jpg" alt="Clinic gallery image 1" loading="lazy" decoding="async" />
+        </div>
+        <div class="thumb">
+          <img src="/assets/images/gallery2.jpg" alt="Clinic gallery image 2" loading="lazy" decoding="async" />
+        </div>
+        <div class="thumb">
+          <img src="/assets/images/gallery3.jpg" alt="Clinic gallery image 3" loading="lazy" decoding="async" />
+        </div>
       </div>
     </div>
   </section>
@@ -348,6 +354,9 @@
         <div class="action-buttons">
           <a href="mailto:doctor@example.com" class="primary-btn">{{ t('contact.emailUs') }}</a>
           <a href="tel:+1234567890" class="secondary-btn">{{ t('contact.callNow') }}</a>
+          <a href="https://wa.me/917703220969?text=Hello%20Doctor%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+            {{ t('contact.whatsapp') }}
+          </a>
         </div>
       </div>
 

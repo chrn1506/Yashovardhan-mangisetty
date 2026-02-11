@@ -55,6 +55,7 @@ export class LanguageService {
         'Our medical team is available to help you with appointments, consultations, and general inquiries.',
       'contact.emailUs': 'Email Us',
       'contact.callNow': 'Call Now',
+      'contact.whatsapp': 'WhatsApp',
       'footer.about': 'About',
       'footer.contact': 'Contact',
       'footer.tagline':
@@ -110,6 +111,7 @@ export class LanguageService {
         'हमारी टीम अपॉइंटमेंट, परामर्श और सामान्य जानकारी में आपकी मदद के लिए उपलब्ध है।',
       'contact.emailUs': 'ईमेल करें',
       'contact.callNow': 'अभी कॉल करें',
+      'contact.whatsapp': 'WhatsApp',
       'footer.about': 'परिचय',
       'footer.contact': 'संपर्क',
       'footer.tagline':
@@ -165,6 +167,7 @@ export class LanguageService {
         'అపాయింట్మెంట్లు, కన్సల్టేషన్‌లు మరియు సాధారణ సమాచారం కోసం మా వైద్య బృందం అందుబాటులో ఉంది.',
       'contact.emailUs': 'ఈమెయిల్ చేయండి',
       'contact.callNow': 'ఇప్పుడే కాల్ చేయండి',
+      'contact.whatsapp': 'WhatsApp',
       'footer.about': 'గురించి',
       'footer.contact': 'సంప్రదించండి',
       'footer.tagline':
