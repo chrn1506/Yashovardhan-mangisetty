@@ -325,6 +325,19 @@ main > .section:nth-child(even) {
   font-weight: 700;
 }
 
+// .about-social-links a img  {
+//   width: 18px;
+//   height: 18px;
+//   display: block;
+// }
+// .about-social-links  {
+  .social-icon-fb{
+  // width: 18px;
+  height: 36px;
+  display: block;
+  }
+
+// }
 /* View Clinic Section */
 .view-clinic-section {
   padding-top: 30px;
@@ -1187,47 +1200,106 @@ main > .section:nth-child(even) {
 }
 
 /* Info Rows */
-.info-row {
-  display: flex;
-  gap: 16px;
+.info-card {
+  border: 1px solid rgba(31, 95, 134, 0.15);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.85));
+}
+
+.info-card h3 {
+  font-size: 24px;
+  letter-spacing: 0.2px;
   margin-bottom: 22px;
 }
 
+.info-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
 .info-row .icon {
-  font-size: 22px;
-  margin-top: 4px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 18px;
+  background: #e0f2fe;
+  color: #0c4a6e;
+  margin-top: 2px;
 }
 
 .info-row label {
-  font-size: 13px;
-  color: #6b7280;
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 2px;
 }
 
 .info-row a,
 .info-row p {
-  font-size: 15px;
-  font-weight: 500;
-  color: #111827;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
   text-decoration: none;
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* CTA Card */
 .action-card p {
-  color: #4b5563;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 26px;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.action-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.2), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.9));
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(148, 163, 184, 0.25),
+    inset 0 0 40px rgba(15, 23, 42, 0.05);
+}
+
+.action-card h3 {
+  font-size: 24px;
+  letter-spacing: 0.2px;
+  margin-bottom: 16px;
 }
 
 .action-buttons {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .primary-btn {
   flex: 1;
   padding: 12px 14px;
-  background: linear-gradient(135deg, #1f5f86, #1a4f70);
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
   color: #fff;
   border-radius: 10px;
   text-align: center;
@@ -1237,14 +1309,16 @@ main > .section:nth-child(even) {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-shadow: 0 12px 24px rgba(14, 165, 233, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .secondary-btn {
   flex: 1;
   padding: 12px 14px;
-  border: 1px solid #b7e3c7;
-  background: #e8f7ee;
-  color: #135a3a;
+  border: 1px solid #cbd5f5;
+  background: #eff6ff;
+  color: #1e3a8a;
   border-radius: 10px;
   text-align: center;
   font-weight: 700;
@@ -1253,13 +1327,14 @@ main > .section:nth-child(even) {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .whatsapp-btn {
   flex: 1;
   padding: 12px 14px;
-  border: 1px solid #22c55e;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: 1px solid #10b981;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: #ffffff;
   border-radius: 10px;
   text-align: center;
@@ -1269,10 +1344,18 @@ main > .section:nth-child(even) {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .whatsapp-btn:hover {
   filter: brightness(1.05);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover,
+.whatsapp-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
 }
 
 /* Responsive */
