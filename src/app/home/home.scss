@@ -1223,6 +1223,7 @@ main > .section:nth-child(even) {
 .contact-container {
   max-width: 1000px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .contact-header {
@@ -1253,6 +1254,7 @@ main > .section:nth-child(even) {
   backdrop-filter: blur(14px);
   border-radius: 20px;
   padding: 35px;
+  max-width: 100%;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1321,6 +1323,8 @@ main > .section:nth-child(even) {
   text-decoration: none;
   margin: 0;
   line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* CTA Card */
@@ -1430,6 +1434,34 @@ main > .section:nth-child(even) {
 @media (max-width: 900px) {
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 24px 0;
+  }
+
+  .contact-header {
+    margin-bottom: 28px;
+  }
+
+  .contact-header h2 {
+    font-size: 28px;
+  }
+
+  .contact-grid {
+    gap: 16px;
+  }
+
+  .contact-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .info-row {
+    gap: 12px;
+    padding: 12px;
   }
 }
 

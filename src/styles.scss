@@ -1,6 +1,11 @@
 /* styles.scss */
 html { scroll-behavior: smooth; }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 :root {
   --spacing-sm: 16px;
   --spacing-md: 32px;
