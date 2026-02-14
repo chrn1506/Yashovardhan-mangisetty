@@ -1,6 +1,6 @@
 export const APP_PROFILE = {
   doctorName: 'Dr. Yashovardhan Mangisetty',
-  email: 'breathwellclinic@gmail.com',
+  email: 'dryashovardhanmangisetty@gmail.com',
   mobileNumberDisplay: '+91 8121418826',
   mobileNumberE164: '+918121418826',
   bookingNumberDisplay: '+91 8121418826',
