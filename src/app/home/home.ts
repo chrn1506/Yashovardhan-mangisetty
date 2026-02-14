@@ -8,10 +8,12 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { Firestore, addDoc, collection, serverTimestamp } from '@angular/fire/firestore';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LanguageService } from '../core/language.service';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
+
 
 interface ClinicTiming {
   dayKey: string;
@@ -44,6 +46,15 @@ interface TreatmentOffered {
   treatmentPlan: string[];
 }
 
+interface AppointmentFormData {
+  name: string;
+  gender: string;
+  age: string;
+  phone: string;
+  date: string;
+  time: string;
+}
+
 @Component({
   selector: 'app-home',
   imports: [Header, Footer],
@@ -54,9 +65,13 @@ export class Home implements OnDestroy, AfterViewChecked {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly document = inject(DOCUMENT);
   private readonly language = inject(LanguageService);
+  private readonly firestore = inject(Firestore);
   @ViewChild('treatmentModalShell') treatmentModalShell?: ElementRef<HTMLElement>;
   @ViewChild('treatmentModalCloseBtn') treatmentModalCloseBtn?: ElementRef<HTMLButtonElement>;
+  @ViewChild('appointmentModalShell') appointmentModalShell?: ElementRef<HTMLElement>;
+  @ViewChild('appointmentModalCloseBtn') appointmentModalCloseBtn?: ElementRef<HTMLButtonElement>;
   private shouldFocusModal = false;
+  private shouldFocusAppointmentModal = false;
 
   private readonly defaultTimings: ClinicTiming[] = [
     { dayKey: 'day.monday', time: '06:00 PM - 09:00 PM' },
@@ -261,6 +276,13 @@ export class Home implements OnDestroy, AfterViewChecked {
   testimonialIndex = 0;
   isTreatmentModalOpen = false;
   selectedTreatment: TreatmentOffered | null = null;
+  isAppointmentModalOpen = false;
+  appointmentSubmitAttempted = false;
+  appointmentForm: AppointmentFormData = this.createDefaultAppointmentForm();
+  readonly appointmentTimeSlots: string[] = ['18:00', '18:15', '18:30', '19:00', '19:30', '20:00'];
+  isSubmittingAppointment = false;
+  appointmentSubmitError = '';
+  appointmentSubmitSuccess = '';
 
   get cardsPerView(): number {
     if (typeof window !== 'undefined' && window.innerWidth <= 768) {
@@ -308,12 +330,12 @@ export class Home implements OnDestroy, AfterViewChecked {
     this.selectedTreatment = item;
     this.isTreatmentModalOpen = true;
     this.shouldFocusModal = true;
-    this.lockBodyScroll();
+    this.syncBodyScroll();
   }
 
   closeTreatmentModal(): void {
     this.isTreatmentModalOpen = false;
-    this.unlockBodyScroll();
+    this.syncBodyScroll();
   }
 
   selectTreatment(item: TreatmentOffered): void {
@@ -336,16 +358,24 @@ export class Home implements OnDestroy, AfterViewChecked {
 
   @HostListener('document:keydown', ['$event'])
   onDocumentKeydown(event: KeyboardEvent): void {
-    if (!this.isTreatmentModalOpen) {
+    if (!this.isTreatmentModalOpen && !this.isAppointmentModalOpen) {
       return;
     }
     if (event.key === 'Escape') {
       event.preventDefault();
-      this.closeTreatmentModal();
+      if (this.isAppointmentModalOpen) {
+        this.closeAppointmentModal();
+      } else {
+        this.closeTreatmentModal();
+      }
       return;
     }
     if (event.key === 'Tab') {
-      this.maintainModalFocus(event);
+      if (this.isAppointmentModalOpen) {
+        this.maintainModalFocus(event, this.appointmentModalShell?.nativeElement);
+      } else {
+        this.maintainModalFocus(event, this.treatmentModalShell?.nativeElement);
+      }
     }
   }
 
@@ -354,6 +384,97 @@ export class Home implements OnDestroy, AfterViewChecked {
       this.treatmentModalCloseBtn.nativeElement.focus();
       this.shouldFocusModal = false;
     }
+    if (this.isAppointmentModalOpen && this.shouldFocusAppointmentModal && this.appointmentModalCloseBtn) {
+      this.appointmentModalCloseBtn.nativeElement.focus();
+      this.shouldFocusAppointmentModal = false;
+    }
+  }
+
+  openAppointmentModal(event?: Event): void {
+    event?.preventDefault();
+    this.appointmentSubmitAttempted = false;
+    this.appointmentSubmitError = '';
+    this.appointmentSubmitSuccess = '';
+    this.isAppointmentModalOpen = true;
+    this.shouldFocusAppointmentModal = true;
+    this.syncBodyScroll();
+  }
+
+  closeAppointmentModal(): void {
+    this.isAppointmentModalOpen = false;
+    this.appointmentSubmitAttempted = false;
+    this.syncBodyScroll();
+  }
+
+  setGender(gender: string): void {
+    this.appointmentForm = {
+      ...this.appointmentForm,
+      gender,
+    };
+  }
+
+  selectAppointmentTime(time: string): void {
+    this.appointmentForm = {
+      ...this.appointmentForm,
+      time,
+    };
+  }
+
+  updateAppointmentField(field: keyof AppointmentFormData, value: string): void {
+    this.appointmentForm = {
+      ...this.appointmentForm,
+      [field]: value,
+    };
+  }
+
+  isAppointmentFieldInvalid(field: keyof AppointmentFormData): boolean {
+    if (!this.appointmentSubmitAttempted) {
+      return false;
+    }
+    return !this.appointmentForm[field].trim();
+  }
+
+  async submitAppointment(): Promise<void> {
+    this.appointmentSubmitAttempted = true;
+    this.appointmentSubmitError = '';
+    this.appointmentSubmitSuccess = '';
+    if (!this.isAppointmentFormValid()) {
+      return;
+    }
+
+    this.isSubmittingAppointment = true;
+    try {
+      await addDoc(collection(this.firestore, 'appointments'), {
+        patientName: this.appointmentForm.name.trim(),
+        gender: this.appointmentForm.gender,
+        age: Number(this.appointmentForm.age),
+        phoneNumber: this.appointmentForm.phone.trim(),
+        appointmentDate: this.appointmentForm.date,
+        appointmentTime: this.appointmentForm.time,
+        source: 'website',
+        createdAt: serverTimestamp(),
+      });
+
+      this.appointmentSubmitSuccess = 'Appointment booked successfully.';
+      this.appointmentForm = this.createDefaultAppointmentForm();
+      this.appointmentSubmitAttempted = false;
+      this.closeAppointmentModal();
+    } catch {
+      this.appointmentSubmitError = 'Unable to book now. Please try again.';
+    } finally {
+      this.isSubmittingAppointment = false;
+    }
+  }
+
+  formatAppointmentTime(time24: string): string {
+    const [hourText, minute = '00'] = time24.split(':');
+    const hour = Number(hourText);
+    if (!Number.isFinite(hour)) {
+      return time24;
+    }
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const hour12 = hour % 12 || 12;
+    return `${hour12.toString().padStart(2, '0')}:${minute} ${period}`;
   }
 
   private safeMap(mapUrl: string): SafeResourceUrl {
@@ -372,8 +493,7 @@ export class Home implements OnDestroy, AfterViewChecked {
     this.unlockBodyScroll();
   }
 
-  private maintainModalFocus(event: KeyboardEvent): void {
-    const modal = this.treatmentModalShell?.nativeElement;
+  private maintainModalFocus(event: KeyboardEvent, modal?: HTMLElement): void {
     if (!modal) {
       return;
     }
@@ -394,5 +514,39 @@ export class Home implements OnDestroy, AfterViewChecked {
       event.preventDefault();
       first.focus();
     }
+  }
+
+  private isAppointmentFormValid(): boolean {
+    const { name, gender, age, phone, date, time } = this.appointmentForm;
+    const ageValue = Number(age);
+    return (
+      !!name.trim() &&
+      !!gender.trim() &&
+      !!age.trim() &&
+      Number.isFinite(ageValue) &&
+      ageValue > 0 &&
+      !!phone.trim() &&
+      !!date.trim() &&
+      !!time.trim()
+    );
+  }
+
+  private syncBodyScroll(): void {
+    if (this.isTreatmentModalOpen || this.isAppointmentModalOpen) {
+      this.lockBodyScroll();
+      return;
+    }
+    this.unlockBodyScroll();
+  }
+
+  private createDefaultAppointmentForm(): AppointmentFormData {
+    return {
+      name: '',
+      gender: '',
+      age: '',
+      phone: '',
+      date: '',
+      time: '',
+    };
   }
 }

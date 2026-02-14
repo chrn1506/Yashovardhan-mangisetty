@@ -62,3 +62,7 @@ For more information on using the Angular CLI, including detailed command refere
 ## 
 npx angular-cli-ghpages --dir=dist/browser/browser
 ng build --configuration production --base-href /Yashovardhan-mangisetty/
+
+
+## fire base setup
+npm install firebase @angular/fire

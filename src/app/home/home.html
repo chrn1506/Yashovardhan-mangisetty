@@ -13,6 +13,7 @@
               <h3>Breath Well Pulmonology and Specialty Clinics</h3>
               <p>Anantapur, Andhra Pradesh 515001</p>
             </div>
+            <!-- <a href="#contact" class="book-btn" (click)="openAppointmentModal($event)">{{ t('common.bookAppointment') }}</a> -->
             <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
           </div>
         </div>
@@ -277,6 +278,119 @@
             </div>
           </aside>
         </div>
+      </div>
+    </div>
+  }
+
+  @if (isAppointmentModalOpen) {
+    <div class="appointment-modal-backdrop" (click)="closeAppointmentModal()" role="presentation">
+      <div class="appointment-modal-shell" #appointmentModalShell role="dialog" aria-modal="true" aria-label="Book appointment form" (click)="$event.stopPropagation()">
+        <button class="appointment-modal-close" #appointmentModalCloseBtn type="button" (click)="closeAppointmentModal()" aria-label="Close appointment form">
+          &times;
+        </button>
+
+        <div class="appointment-modal-head">
+          <p class="appointment-tag">In-Clinic Consultation</p>
+          <h3>Book Appointment</h3>
+          <p>Share your details and preferred slot. We will connect with you shortly.</p>
+        </div>
+
+        <form class="appointment-form" (submit)="$event.preventDefault(); submitAppointment()">
+          <div class="appointment-field">
+            <label for="appointment-name">Name</label>
+            <input
+              id="appointment-name"
+              type="text"
+              placeholder="Enter patient name"
+              [value]="appointmentForm.name"
+              [class.invalid]="isAppointmentFieldInvalid('name')"
+              (input)="updateAppointmentField('name', $any($event.target).value)"
+            />
+          </div>
+
+          <div class="appointment-field">
+            <span class="appointment-label">Gender</span>
+            <div class="appointment-gender-row">
+              <button type="button" [class.active]="appointmentForm.gender === 'Male'" (click)="setGender('Male')">Male</button>
+              <button type="button" [class.active]="appointmentForm.gender === 'Female'" (click)="setGender('Female')">Female</button>
+              <button type="button" [class.active]="appointmentForm.gender === 'Other'" (click)="setGender('Other')">Other</button>
+            </div>
+            @if (isAppointmentFieldInvalid('gender')) {
+              <small>Please select gender</small>
+            }
+          </div>
+
+          <div class="appointment-two-col">
+            <div class="appointment-field">
+              <label for="appointment-age">Age</label>
+              <input
+                id="appointment-age"
+                type="number"
+                min="1"
+                max="120"
+                placeholder="Age"
+                [value]="appointmentForm.age"
+                [class.invalid]="isAppointmentFieldInvalid('age')"
+                (input)="updateAppointmentField('age', $any($event.target).value)"
+              />
+            </div>
+
+            <div class="appointment-field">
+              <label for="appointment-phone">Phone Number</label>
+              <input
+                id="appointment-phone"
+                type="tel"
+                placeholder="Enter mobile number"
+                [value]="appointmentForm.phone"
+                [class.invalid]="isAppointmentFieldInvalid('phone')"
+                (input)="updateAppointmentField('phone', $any($event.target).value)"
+              />
+            </div>
+          </div>
+
+          <div class="appointment-two-col">
+            <div class="appointment-field">
+              <label for="appointment-date">Date</label>
+              <input
+                id="appointment-date"
+                type="date"
+                [value]="appointmentForm.date"
+                [class.invalid]="isAppointmentFieldInvalid('date')"
+                (input)="updateAppointmentField('date', $any($event.target).value)"
+              />
+            </div>
+
+            <div class="appointment-field">
+              <label for="appointment-time">Time</label>
+              <input
+                id="appointment-time"
+                type="time"
+                [value]="appointmentForm.time"
+                [class.invalid]="isAppointmentFieldInvalid('time')"
+                (input)="updateAppointmentField('time', $any($event.target).value)"
+              />
+            </div>
+          </div>
+
+          <div class="appointment-field">
+            <span class="appointment-label">Quick Slots</span>
+            <div class="appointment-time-slots">
+              @for (slot of appointmentTimeSlots; track slot) {
+                <button type="button" [class.active]="appointmentForm.time === slot" (click)="selectAppointmentTime(slot)">
+                  {{ formatAppointmentTime(slot) }}
+                </button>
+              }
+            </div>
+          </div>
+
+          @if (appointmentSubmitError) {
+            <p class="appointment-status appointment-status-error">{{ appointmentSubmitError }}</p>
+          }
+
+          <button type="submit" class="appointment-submit-btn" [disabled]="isSubmittingAppointment">
+            {{ isSubmittingAppointment ? 'Booking...' : t('common.bookAppointment') }}
+          </button>
+        </form>
       </div>
     </div>
   }
