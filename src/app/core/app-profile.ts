@@ -1,6 +1,6 @@
 export const APP_PROFILE = {
   doctorName: 'Dr. Yashovardhan Mangisetty',
-  email: 'dryashovardhanmangisetty@gmail.com',
+  email: 'thelungdoctoratp@gmail.com',
   mobileNumberDisplay: '+91 8121418826',
   mobileNumberE164: '+918121418826',
   bookingNumberDisplay: '+91 8121418826',
