@@ -1,12 +1,31 @@
 <footer class="site-footer">
   <div class="container footer-top">
     <div class="footer-brand">
-      <a href="#booking" class="footer-logo" aria-label="Go to top section">
+      <!-- <a href="#booking" class="footer-logo" aria-label="Go to top section">
         <span class="logo-mark">DR</span>
-      </a>
-      <p class="brand-text">
+      </a> -->
+      <!-- <p class="brand-text">
         {{ t('footer.tagline') }}
-      </p>
+      </p> -->
+      <div class="footer-socials">
+        <div class="about-social-links" style="
+            display: flex;
+            gap: 2rem;
+        ">
+              <a href="https://www.instagram.com/the_lung_doc_?igsh=bHo4MjBoaHZ0dGpo" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <img src="assets/images/instagram.svg" alt="Instagram" />
+              </a>
+               <a href="#" aria-label="LinkedIn">
+                <img class ="social-icon-linkedin" src="assets/images/linkedin.svg" alt="LinkedIn" />
+              </a>
+              <a href="https://www.facebook.com/share/1Cs9uaBP2i/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <img class ="social-icon-facebook" src="assets/images/facebook.svg" alt="Facebook" />
+              </a>
+                <a href="https://youtube.com/@thelungdocatp?si=mFm8RN77Lg1MfxbA" aria-label="Youtube" target="_blank" rel="noopener noreferrer">
+                <img class ="social-icon-youtube" src="assets/images/youtube.svg" alt="Youtube" />
+              </a>
+            </div>
+      </div>
     </div>
 
     <div class="footer-columns">
@@ -20,20 +39,18 @@
 
       <div class="footer-col footer-contact">
         <h3>{{ t('footer.contact') }}</h3>
-        <p>Anantapur, Andhra Pradesh 515001</p>
-        <a href="tel:+917703220969">+91 7703220969</a>
-        <a href="mailto:breathwellclinic@gmail.com">breathwellclinic@gmail.com</a>
+         <h3>DiYa Superspeciality Care - Advanced Gastro and Pulmo Care</h3>
+              <p>Address: 12-3-59, 3rd Cross Rd, Beside Canara Bank, Sai Nagar, Anantapur, Andhra Pradesh 515001, India</p>
+        <a [href]="links.bookingTelHref">{{ profile.bookingNumberDisplay }}</a>
+        <a [href]="links.emailHref">{{ profile.email }}</a>
       </div>
     </div>
   </div>
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>{{ t('footer.copyright') }} &copy; {{ currentYear }} dr.care</p>
-      <div class="footer-socials">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Facebook">FB</a>
-      </div>
+      <p>{{ t('footer.copyright') }} &copy; {{ currentYear }} ssdigipromotions</p>
+      
     </div>
   </div>
 </footer>

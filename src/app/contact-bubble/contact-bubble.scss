@@ -10,7 +10,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--accent, #007acc);
+  background: var(--accent);
   border: none;
   color: #fff;
   display: flex;
@@ -91,7 +91,7 @@
   border-radius: 6px;
   text-decoration: none;
   color: #fff;
-  background: var(--accent, #007acc);
+  background: var(--accent);
   border: 0;
   font-size: 0.9rem;
   font-weight: 500;
@@ -100,20 +100,20 @@
 }
 
 .contact-bubble .btn:hover {
-  background: #005a9c;
+  background: var(--accent-strong);
 }
 
 .contact-bubble .btn.secondary {
-  background: #f1f1f1;
-  color: #222;
+  background: var(--accent-soft);
+  color: #0c4a6e;
 }
 
 .contact-bubble .btn.secondary:hover {
-  background: #e5e5e5;
+  background: var(--accent-soft-2);
 }
 
 .contact-bubble .btn.whatsapp {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent-strong));
   color: #fff;
 }
 
@@ -209,3 +209,4 @@
     width: 100%;
   }
 }
+

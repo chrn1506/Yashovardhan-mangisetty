@@ -3,6 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { ContactBubble } from './contact-bubble/contact-bubble';
+import { APP_LINKS, APP_PROFILE } from './core/app-profile';
 import { ScrollToTop } from './scroll-to-top/scroll-to-top';
 
 @Component({
@@ -16,9 +17,10 @@ export class App {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
   protected readonly title = signal('d-portfolio');
+  readonly links = APP_LINKS;
 
   constructor() {
-    const pageTitle = 'Dr.Yashovardhan Mangisetty | Pulmonologist in Anantapur';
+    const pageTitle = `${APP_PROFILE.doctorName} | Pulmonologist in Anantapur`;
     const description =
       'Expert pulmonology care in Anantapur for asthma, COPD, lung infections, sleep and breathing disorders.';
     const canonicalUrl = 'https://fci.github.io/Yashovardhan-mangisetty/';

@@ -4,16 +4,40 @@
   <section id="booking" class="section booking-preview">
     <div class="container booking-grid">
       <div class="booking-left">
-        <h2 class="booking-doctor-name">Dr. Yashovardhan Mangisetty</h2>
+        <h2 class="booking-doctor-name">{{ profile.doctorName }}</h2>
         <p class="booking-specialty">{{ t('booking.specialty') }}</p>
+        <p class="booking-experience-highlight">{{ t('booking.experienceHighlight') }}</p>
 
         <div class="booking-list-card">
           <div class="clinic-row">
             <div class="clinic-text">
-              <h3>Breath Well Pulmonology and Specialty Clinics</h3>
-              <p>Anantapur, Andhra Pradesh 515001</p>
+              <h3>DiYa Superspeciality Care - Advanced Gastro and Pulmo Care</h3>
+              <p>Address: 12-3-59, 3rd Cross Rd, Beside Canara Bank, Sai Nagar, Anantapur, Andhra Pradesh 515001, India</p>
             </div>
-            <!-- <a href="#contact" class="book-btn" (click)="openAppointmentModal($event)">{{ t('common.bookAppointment') }}</a> -->
+            <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
+          </div>
+
+          <div class="clinic-row">
+            <div class="clinic-text">
+              <h3> KIMS - Saveera Hospital (Anantapur)</h3>
+              <p>Address: 1-1348, Srinagar Colony Extension, Opposite to Sakshi Office, Kakkalapalle, 80 Feet Road, Anantapur, Andhra Pradesh 515004, India</p>
+            </div>
+            <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
+          </div>
+
+          <div class="clinic-row">
+            <div class="clinic-text">
+              <h3> KIMS Hospitals, Kurnool (Kurnool)</h3>
+              <p>Address: Near New Ayyapa Swamy Temple, Kalluru, Kurnool, Andhra Pradesh 518002, India</p>
+            </div>
+            <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
+          </div>
+
+          <div class="clinic-row">
+            <div class="clinic-text">
+              <h3> Sri Sathya Sai Institute of Higher Medical Sciences - Prashantigram (Puttaparthi)</h3>
+              <p>Address: Puttaparthi Main Rd, Prasanthigram, Bade Nayak Thanda, Andhra Pradesh 515134, India</p>
+            </div>
             <a href="#contact" class="book-btn">{{ t('common.bookAppointment') }}</a>
           </div>
         </div>
@@ -22,7 +46,7 @@
       <div class="booking-image-card">
         <img
           src="assets/images/docter_image1.jpeg"
-          alt="Dr. Yashovardhan Mangisetty"
+          [alt]="profile.doctorName"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -42,14 +66,14 @@
             <img
               class="Imgshapes"
               src="assets/images/docter_image1.jpeg"
-              alt="Dr. Yashovardhan mangisetty"
+              [alt]="profile.doctorName"
               loading="lazy"
               decoding="async"
             />
           </div>
 
           <div class="about-photo-info">
-            <h4>Dr. Yashovardhan Mangisetty</h4>
+            <h4>{{ profile.doctorName }}</h4>
             <p class="role">{{ t('booking.specialty') }}</p>
             <p class="exp">{{ t('about.yearsExp') }}</p>
           </div>
@@ -57,40 +81,88 @@
           <div class="about-socials">
             <!-- <h5>{{ t('about.socials') }}</h5> -->
             <div class="about-social-links">
-              <a href="#" aria-label="Instagram">
-                <img src="assets/images/icons8-instagram.svg" alt="Instagram" />
+              <a href="https://www.instagram.com/the_lung_doc_?igsh=bHo4MjBoaHZ0dGpo" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <img src="assets/images/instagram.svg" alt="Instagram" />
               </a>
-              <a href="#" aria-label="Facebook">
-                <img class ="social-icon-fb" src="assets/images/facebook-svgrepo-com.svg" alt="Facebook" />
+               <a href="#" aria-label="LinkedIn">
+                <img class ="social-icon-linkedin" src="assets/images/linkedin.svg" alt="LinkedIn" />
+              </a>
+              <a href="https://www.facebook.com/share/1Cs9uaBP2i/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <img class ="social-icon-facebook" src="assets/images/facebook.svg" alt="Facebook" />
+              </a>
+                <a href="https://youtube.com/@thelungdocatp?si=mFm8RN77Lg1MfxbA" aria-label="Youtube" target="_blank" rel="noopener noreferrer">
+                <img class ="social-icon-youtube" src="assets/images/youtube.svg" alt="Youtube" />
               </a>
             </div>
           </div>
         </div>
 
         <div class="about-info">
-          <h3>Dr.Yashovardhan mangisetty</h3>
-          <p class="title">MBBS, MD, DNB (Pulmonology), EDARM (Switzerland), FIAB, FAAI (PGIMER)</p>
-          <p class="registration"><strong>Registration No.:</strong> 79634, Telangana State Medical Council, 2012</p>
+          <h3>{{ profile.doctorName }}</h3>
+          <p class="title">MBBS, MD (Pulmonary Medicine), DNB (Pulmonology),
+            EDARM (Switzerland), Fellowship – Interventional Pulmonology,
+            Fellowship – Allergy, Asthma & Sleep Medicine</p>
+          <!-- <p class="registration"><strong>Registration No.:</strong> 79634, Telangana State Medical Council, 2012</p> -->
           <p class="languages"><strong>Languages Spoken:</strong> English, हिंदी, తెలుగు</p>
           
-          <p class="intro">Dr.Yashovardhan mangisetty is an accomplished Pulmonologist with 10 years of experience in treating a wide range of respiratory conditions. His expertise spans across Pulmonary Medicine, focusing on the diagnosis, treatment, and management of respiratory disorders. He is dedicated to providing high-quality care for patients with conditions such as asthma, COPD, lung infections, and other chronic respiratory diseases.</p>
+          <p class="intro">{{ profile.doctorName }} is an accomplished Pulmonologist with 9+ years of experience in treating a wide range of respiratory conditions. His expertise spans across Pulmonary Medicine, focusing on the diagnosis, treatment, and management of respiratory disorders. He is dedicated to providing high-quality care for patients with conditions such as asthma, COPD, lung infections, and other chronic respiratory diseases.</p>
 
-          <p>Known for his patient-centered approach, Dr.mangisetty ensures that each individual receives personalized care tailored to their specific health needs. With a commitment to clear communication, he fluently speaks English, Hindi, and Telugu, making him accessible to a diverse patient base in Anantapur.</p>
+          <p>Known for his patient-centered approach, {{ profile.doctorName }} ensures that each individual receives personalized care tailored to their specific health needs. With a commitment to clear communication, he fluently speaks English, Hindi, and Telugu, making him accessible to a diverse patient base in Anantapur.</p>
 
-          <div class="qualifications">
+          <!-- <div class="qualifications">
             <h4>Educational Qualifications:</h4>
             <ul>
               <li>MD (Doctor of Medicine)</li>
               <li>DM (Doctorate of Medicine) in Pulmonary Medicine</li>
             </ul>
-          </div>
+          </div> -->
 
           <div class="specialties">
-            <h4>Specialties:</h4>
+            <h4>Specialties</h4>
+            <h5>Interventional Pulmonology - Procedural Experience</h5>
             <ul>
-              <li>Pulmonary Medicine</li>
-              <li>Pulmonology (Respiratory Health)</li>
-              <li>Asthma, COPD, and Lung Infection Management</li>
+              <li>2000+ Diagnostic & Therapeutic Bronchoscopies</li>
+              <li>1000+ Mini Rigid / Flexi-Rigid Thoracoscopies</li>
+              <li>100+ Rigid Bronchoscopies</li>
+              <li>Cryo Lung Biopsies</li>
+              <li>350+ Linear EBUS (Endobronchial Ultrasound) Procedures</li>
+            </ul>
+
+            <h5>Advanced Pulmonary Procedures</h5>
+            <ul>
+              <li>Balloon Bronchoplasty</li>
+              <li>Bronchial Thermoplasty</li>
+              <li>Whole Lung Lavage</li>
+              <li>Endobronchial Valve Placement</li>
+              <li>Foreign Body Removal</li>
+              <li>Tracheal Stenting</li>
+              <li>Endobronchial Tumor Debulking</li>
+            </ul>
+
+            <h5>Critical Care & ICU Expertise</h5>
+            <ul>
+              <li>High-risk ICU bronchoscopies</li>
+              <li>Advanced pulmonary interventions in ventilated and critically ill patients</li>
+              <li>Multidisciplinary coordination in intensive care settings</li>
+            </ul>
+
+            <h5>Academic & Teaching Experience</h5>
+            <ul>
+              <li>Teaching and mentoring undergraduate students, interns, and junior post-graduates</li>
+              <li>Active involvement in clinical training and procedural demonstrations</li>
+            </ul>
+
+            <h5>Sleep Medicine</h5>
+            <ul>
+              <li>Comprehensive management of sleep-related breathing disorders</li>
+              <li>Expertise in diagnosis and long-term treatment planning</li>
+            </ul>
+
+            <h5>Communication & Patient Counseling</h5>
+            <ul>
+              <li>Clear and empathetic patient education</li>
+              <li>Detailed discussion of diagnosis, procedures, and treatment options</li>
+              <li>Strong rapport building with patients, families, and multidisciplinary teams</li>
             </ul>
           </div>
         </div>
@@ -130,9 +202,9 @@
           <div class="view-clinic-right">
             <h4>{{ t('clinic.timingsTitle') }}</h4>
             <div class="view-clinic-timings">
-              @for (timing of clinic.timings; track timing.dayKey) {
+              @for (timing of clinic.timings; track timing.day) {
                 <div class="vc-timing-row">
-                  <span>{{ t(timing.dayKey) }}</span>
+                  <span>{{ timing.day }}</span>
                   <span>{{ timing.time }}</span>
                 </div>
               }
@@ -413,7 +485,7 @@
           <span class="icon">📧</span>
           <div>
             <label>{{ t('contact.email') }}</label>
-            <a href="mailto:doctor@example.com">doctor@example.com</a>
+            <a [href]="links.emailHref">{{ profile.email }}</a>
           </div>
         </div>
 
@@ -421,7 +493,7 @@
           <span class="icon">📱</span>
           <div>
             <label>{{ t('contact.phone') }}</label>
-            <a href="tel:+1234567890">(123) 456-7890</a>
+            <a [href]="links.mobileTelHref">{{ profile.mobileNumberDisplay }}</a>
           </div>
         </div>
 
@@ -454,9 +526,9 @@
         </p>
 
         <div class="action-buttons">
-          <a href="mailto:doctor@example.com" class="primary-btn">{{ t('contact.emailUs') }}</a>
-          <a href="tel:+1234567890" class="secondary-btn">{{ t('contact.callNow') }}</a>
-          <a href="https://wa.me/917703220969?text=Hello%20Doctor%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+          <a [href]="links.emailHref" class="primary-btn">{{ t('contact.emailUs') }}</a>
+          <a [href]="links.bookingTelHref" class="secondary-btn">{{ t('contact.callNow') }}</a>
+          <a [href]="links.whatsappHref" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
             {{ t('contact.whatsapp') }}
           </a>
         </div>

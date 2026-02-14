@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { APP_LINKS, APP_PROFILE } from '../core/app-profile';
 
 @Component({
   selector: 'app-contact-bubble',
@@ -7,9 +8,8 @@ import { Component } from '@angular/core';
 })
 export class ContactBubble {
   isOpen = false;
-  email = 'doctor@example.com';
-  phone = '+917703220969';
-  whatsappMessage = 'Hello Doctor, I need assistance.';
+  readonly profile = APP_PROFILE;
+  readonly links = APP_LINKS;
 
   toggle() {
     this.isOpen = !this.isOpen;
@@ -29,6 +29,10 @@ export class ContactBubble {
   }
 
   get whatsappUrl(): string {
-    return `https://wa.me/${this.phone.replace('+', '')}?text=${encodeURIComponent(this.whatsappMessage)}`;
+    return this.links.whatsappHref;
+  }
+
+  get email(): string {
+    return this.profile.email;
   }
 }

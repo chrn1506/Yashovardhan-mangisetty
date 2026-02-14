@@ -5,7 +5,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #007acc;
+  background: var(--accent);
   color: white;
   border: none;
   font-size: 1.2rem;
@@ -30,7 +30,7 @@
 
 .scroll-to-top:hover {
   transform: scale(1.1);
-  background: #005a9c;
+  background: var(--accent-strong);
 }
 
 .scroll-to-top:active {
@@ -55,3 +55,4 @@ right: 70px !important;
 }
 
 }
+

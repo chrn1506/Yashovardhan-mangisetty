@@ -10,13 +10,14 @@ import {
 } from '@angular/core';
 import { Firestore, addDoc, collection, serverTimestamp } from '@angular/fire/firestore';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { APP_LINKS, APP_PROFILE } from '../core/app-profile';
 import { LanguageService } from '../core/language.service';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
 
 interface ClinicTiming {
-  dayKey: string;
+  day: string;
   time: string;
 }
 
@@ -66,6 +67,8 @@ export class Home implements OnDestroy, AfterViewChecked {
   private readonly document = inject(DOCUMENT);
   private readonly language = inject(LanguageService);
   private readonly firestore = inject(Firestore);
+  readonly profile = APP_PROFILE;
+  readonly links = APP_LINKS;
   @ViewChild('treatmentModalShell') treatmentModalShell?: ElementRef<HTMLElement>;
   @ViewChild('treatmentModalCloseBtn') treatmentModalCloseBtn?: ElementRef<HTMLButtonElement>;
   @ViewChild('appointmentModalShell') appointmentModalShell?: ElementRef<HTMLElement>;
@@ -73,26 +76,89 @@ export class Home implements OnDestroy, AfterViewChecked {
   private shouldFocusModal = false;
   private shouldFocusAppointmentModal = false;
 
-  private readonly defaultTimings: ClinicTiming[] = [
-    { dayKey: 'day.monday', time: '06:00 PM - 09:00 PM' },
-    { dayKey: 'day.tuesday', time: '06:00 PM - 09:00 PM' },
-    { dayKey: 'day.wednesday', time: '06:00 PM - 09:00 PM' },
-    { dayKey: 'day.thursday', time: '06:00 PM - 09:00 PM' },
-    { dayKey: 'day.friday', time: '06:00 PM - 09:00 PM' },
-    { dayKey: 'day.saturday', time: '06:00 PM - 09:00 PM' },
-    { dayKey: 'day.sunday', time: '06:00 PM - 09:00 PM' },
+  private readonly kimsSaveeraTimings: ClinicTiming[] = [
+    { day: 'Monday to Saturday', time: '09:00 AM - 04:00 PM' },
+    { day: 'Sunday', time: '09:00 AM - 01:00 PM' },
+  ];
+
+  private readonly diyaTimings: ClinicTiming[] = [
+    { day: 'Monday to Saturday', time: '06:00 PM - 09:00 PM' },
+  ];
+
+  private readonly railwayGuntakalTimings: ClinicTiming[] = [
+    { day: 'First Wednesday of Every Month', time: '11:00 AM - 02:00 PM' },
+  ];
+
+  private readonly vijethaGuntakalTimings: ClinicTiming[] = [
+    { day: 'First Wednesday of Every Month', time: '05:00 PM - 09:00 PM' },
+  ];
+
+  private readonly kimsKurnoolTimings: ClinicTiming[] = [
+    { day: '2nd, 3rd & 4th Wednesday', time: '10:00 AM - 05:00 PM' },
+  ];
+
+  private readonly sssihmsPuttaparthiTimings: ClinicTiming[] = [
+    { day: 'First Saturday of Every Month', time: '10:00 AM - 04:00 PM' },
   ];
 
   readonly viewClinics: ViewClinic[] = [
     {
-      name: 'Breath Well Pulmonology and Specialty Clinics',
+      name: 'KIMS - Saveera Hospital (Anantapur)',
       address:
-        'Breath Well Pulmonology and Specialty Clinics, Anantapur, Andhra Pradesh 515001, India.',
+        '1-1348, Srinagar Colony Extension, Opposite to Sakshi Office, Kakkalapalle, 80 Feet Road, Anantapur, Andhra Pradesh 515004, India.',
       bookLink: '#contact',
-      callLink: 'tel:+919999999999',
-      directionsLink: 'https://maps.google.com/?q=Anantapur+Andhra+Pradesh+515001',
-      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Anantapur+Andhra+Pradesh+515001&output=embed'),
-      timings: this.defaultTimings,
+      callLink: this.links.bookingTelHref,
+      directionsLink: 'https://maps.google.com/?q=KIMS+Saveera+Hospital+Anantapur',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=KIMS+Saveera+Hospital+Anantapur&output=embed'),
+      timings: this.kimsSaveeraTimings,
+    },
+    {
+      name: 'DiYa Superspeciality Care - Advanced Gastro and Pulmo Care',
+      address:
+        '12-3-59, 3rd Cross Rd, Beside Canara Bank, Sai Nagar, Anantapur, Andhra Pradesh 515001, India.',
+      bookLink: '#contact',
+      callLink: this.links.bookingTelHref,
+      directionsLink: 'https://maps.google.com/?q=DiYa+Superspeciality+Care+Anantapur',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=DiYa+Superspeciality+Care+Anantapur&output=embed'),
+      timings: this.diyaTimings,
+    },
+    {
+      name: 'Railway Hospital, Guntakal',
+      address: 'Guntakal, Andhra Pradesh, India.',
+      bookLink: '#contact',
+      callLink: this.links.bookingTelHref,
+      directionsLink: 'https://maps.google.com/?q=Railway+Hospital+Guntakal',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Railway+Hospital+Guntakal&output=embed'),
+      timings: this.railwayGuntakalTimings,
+    },
+    {
+      name: 'Vijetha Hospital, Guntakal',
+      address: 'Guntakal, Andhra Pradesh, India.',
+      bookLink: '#contact',
+      callLink: this.links.bookingTelHref,
+      directionsLink: 'https://maps.google.com/?q=Vijetha+Hospital+Guntakal',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Vijetha+Hospital+Guntakal&output=embed'),
+      timings: this.vijethaGuntakalTimings,
+    },
+    {
+      name: 'KIMS Hospitals, Kurnool (Kurnool)',
+      address:
+        'Near New Ayyapa Swamy Temple, Kalluru, Kurnool, Andhra Pradesh 518002, India.',
+      bookLink: '#contact',
+      callLink: this.links.bookingTelHref,
+      directionsLink: 'https://maps.google.com/?q=KIMS+Hospital+Kurnool',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=KIMS+Hospital+Kurnool&output=embed'),
+      timings: this.kimsKurnoolTimings,
+    },
+    {
+      name: 'Sri Sathya Sai Institute of Higher Medical Sciences - Prashantigram (Puttaparthi)',
+      address:
+        'Puttaparthi Main Rd, Prasanthigram, Bade Nayak Thanda, Andhra Pradesh 515134, India.',
+      bookLink: '#contact',
+      callLink: this.links.bookingTelHref,
+      directionsLink: 'https://maps.google.com/?q=Sri+Sathya+Sai+Institute+of+Higher+Medical+Sciences+Prashantigram',
+      mapEmbedUrl: this.safeMap('https://www.google.com/maps?q=Sri+Sathya+Sai+Institute+of+Higher+Medical+Sciences+Prashantigram&output=embed'),
+      timings: this.sssihmsPuttaparthiTimings,
     },
   ];
 

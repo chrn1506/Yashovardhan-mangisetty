@@ -1,6 +1,6 @@
 .site-footer {
-  background: linear-gradient(180deg, #2e6f86 0%, #2a657a 100%);
-  color: #e6f4fb;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: var(--accent-soft);
   margin-top: 10px;
 }
 
@@ -31,7 +31,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #8ef0c5, #2f7aa0);
+  background: radial-gradient(circle at 30% 30%, var(--accent-border), var(--accent-strong));
   color: #ffffff;
   display: inline-flex;
   align-items: center;
@@ -42,7 +42,7 @@
 
 .brand-text {
   margin: 14px 0 0;
-  color: #d7ebf5;
+  color: var(--accent-soft);
   max-width: 360px;
   text-align: left;
   font-size: 0.95rem;
@@ -67,7 +67,7 @@
   margin: 0 0 8px;
   font-size: 0.78rem;
   line-height: 1.45;
-  color: #d7ebf5;
+  color: var(--accent-soft);
   text-decoration: none;
   text-align: left;
 }
@@ -96,7 +96,7 @@
 
 .footer-bottom-inner p {
   margin: 0;
-  color: #d7ebf5;
+  color: var(--accent-soft);
   font-size: 0.74rem;
   text-align: left;
 }
@@ -147,3 +147,4 @@
     padding: 12px 0;
   }
 }
+
